@@ -1,0 +1,29 @@
+name: nahej_ali
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.7.0-323.0.dev
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/logoNA.png
+    - assets/images/nahej.jpeg
+    - assets/images/donorlogo.png
+    - assets/images/admin.png
+    - assets/images/volunteers.png
+    - assets/images/temp-02.jpg
+    - assets/images/temp-03.jpg
+    - assets/images/home.png
