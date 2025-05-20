@@ -1,5 +1,6 @@
 import 'package:nahej_ali/db/database.dart';
 import 'package:nahej_ali/models/donation.dart';
+import 'package:nahej_ali/models/volunteer.dart';
 
 void insertDonation(Donation donation) async {
   // get an instance of the database
@@ -35,10 +36,52 @@ Future<List<Donation>> loadDonations() async {
   return resultList;
 }
 
-void deleteExpense(Donation donation) async {
+void deleteDonation(Donation donation) async {
   // get an instance of the database
   NahejAliDatabase database = NahejAliDatabase();
   final db = await database.getDatabase();
   // delete a donation with a specific id
   ////////db.delete('donations', where: 'id = ?', whereArgs: [donation.id]);
+}
+
+
+
+
+
+
+void insertVolunteer(Volunteer volunteer) async {
+  // get an instance of the database
+  NahejAliDatabase database = NahejAliDatabase();
+  final db = await database.getDatabase();
+  // insert donation into the database
+  /////////db.insert('volunteers', volunteer.volunteerMap);
+}
+
+Future<List<Volunteer>> loadVolunteers() async {
+  // get an instance of the database
+  NahejAliDatabase database = NahejAliDatabase();
+  final db = await database.getDatabase();
+  // get all donations from the database
+  final result = await db.query('volunteers');
+  // map every row into an Expense object
+  List<Volunteer> resultList = result.map((row) {
+    return Volunteer.named(
+      // cast every object into its corresponding type
+      /////////id: row['id'] as String,
+      name: row['name'] as String,
+      // Use ! at the end of the variable name to tell Dart not to check for null values
+      location: row['location'] as String,
+      availability: row['availability'] as String,
+    );
+  }).toList();
+  // return the resulting donations list
+  return resultList;
+}
+
+void deleteVolunteer(Volunteer volunteer) async {
+  // get an instance of the database
+  NahejAliDatabase database = NahejAliDatabase();
+  final db = await database.getDatabase();
+  // delete a donation with a specific id
+  ////////db.delete('volunteers', where: 'id = ?', whereArgs: [volunteer.id]);
 }

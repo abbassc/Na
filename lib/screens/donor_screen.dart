@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:nahej_ali/models/donation.dart';
 
 class DonorScreen extends StatelessWidget{
 
   final Function changeScreen;
+  
+  final Function openAddDonationOverlay;
+  //final Function addNewDonation;
+  //final Function deleteDonation;
 
-  const DonorScreen(this.changeScreen, {super.key});
+  const DonorScreen(this.changeScreen, this.openAddDonationOverlay, 
+  //this.addNewDonation, this.deleteDonation, 
+  {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +35,7 @@ class DonorScreen extends StatelessWidget{
         foregroundColor: const Color.fromARGB(255, 27, 136, 134),
         actions: [
           IconButton(
-            onPressed: (){},
+            onPressed: (){openAddDonationOverlay;},
             icon: Icon(Icons.add),
           ),
         ],
