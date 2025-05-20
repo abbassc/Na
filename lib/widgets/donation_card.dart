@@ -43,8 +43,6 @@ class DonationCard extends StatelessWidget{
               ),
             ),
             ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: (){}, child: Text('Assign to')),
-
-        
           ],
         ),
       ),
