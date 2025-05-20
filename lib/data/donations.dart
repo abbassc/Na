@@ -1,6 +1,18 @@
 import 'package:nahej_ali/models/donation.dart';
 
 const donations = [
+  Donation('Dahye', '4:00PM', Category.Money, 50),
+  Donation('Basta', '3:00PM', Category.Money, 100),
+  Donation('Dahye', '1:00PM', Category.Clothes),
+  Donation('Msaytbe', '2:00PM', Category.Food),
+];
+
+
+
+
+/*import 'package:nahej_ali/models/donation.dart';
+
+const donations = [
   Donation(
     location: 'Dahye',
     time: '4:00PM',
@@ -24,16 +36,6 @@ const donations = [
     category: Category.Food,
   ),
 ];
-
-
-
-
-/*import 'package:nahej_ali/models/donation.dart';
-
-const donations = [
-  Donation('Dahye', '4:00PM', Category.Money, 50),
-  Donation('Basta', '3:00PM', Category.Money, 100),
-  Donation('Dahye', '1:00PM', Category.Clothes),
-  Donation('Msaytbe', '2:00PM', Category.Food),
-];
 */
+
+
