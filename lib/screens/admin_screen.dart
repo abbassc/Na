@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nahej_ali/data/donations.dart';
 import 'package:nahej_ali/data/volunteers.dart';
+import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
 import 'package:nahej_ali/widgets/donations_list.dart';
 import 'package:nahej_ali/widgets/volunteers_list.dart';
@@ -10,12 +11,16 @@ class AdminScreen extends StatelessWidget{
   final Function changeScreen;
   
   final Function openAddVolunteerOverlay;
+
+  final List<Donation> registeredDonationsList;
+  final List<Volunteer> registeredVolunteersList;
   //final Function addNewVolunteer;
   //final Function deleteVolunteer;
 
-  const AdminScreen(this.changeScreen, this.openAddVolunteerOverlay, 
+  const AdminScreen( 
   //this.addNewVolunteer, this.deleteVolunteer, 
-  {super.key});
+    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.registeredDonationsList, required this.registeredVolunteersList, super.key}
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +40,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                     width: 141,
                     height: 28,
-                    child: ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: (){openAddVolunteerOverlay;}, child: Text('Add Volunteer')),
+                    child: ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: (){openAddVolunteerOverlay();}, child: Text('Add Volunteer')),
                   ),
               ],
             ),
@@ -49,7 +54,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: Expanded(child: VolunteersList(volunteers)),
+                  child: VolunteersList(volunteers),
                 ),
               ],
             ),
@@ -73,7 +78,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: Expanded(child: DonationsList(donations)),
+                  child: DonationsList(registeredDonationsList),
                 ),
               ],
             ),

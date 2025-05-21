@@ -134,13 +134,12 @@ class _NahejAliAppState extends State<NahejAliApp>{
     Widget activeScreen = HomeScreen(changeScreen);
 
     if (activeScreenName == 'admin-screen') {
-      activeScreen = AdminScreen(changeScreen, _openAddVolunteerOverlay,
+      activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList);
        //_addNewVolunteer, _deleteVolunteer
-       );
     }
     
     else if (activeScreenName == 'volunteer-screen') {
-      activeScreen = VolunteerScreen(changeScreen);
+      activeScreen = VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList);
     }
 
     else if (activeScreenName == 'donor-screen') {

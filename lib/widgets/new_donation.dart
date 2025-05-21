@@ -157,7 +157,7 @@ class _NewDonationState extends State<NewDonation> {
               ),
               ElevatedButton(
                 onPressed: _submitDonationForm,
-                child: Text('Save Expense'),
+                child: Text('Save Donation'),
               ),
             ],
           )

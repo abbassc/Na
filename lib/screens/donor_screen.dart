@@ -35,21 +35,25 @@ class DonorScreen extends StatelessWidget{
         foregroundColor: const Color.fromARGB(255, 27, 136, 134),
         actions: [
           IconButton(
-            onPressed: (){openAddDonationOverlay;},
+            onPressed: (){openAddDonationOverlay();},
             icon: Icon(Icons.add),
           ),
         ],
       ),
       backgroundColor: Colors.white,
+      
       body: Column(
         children: [
-          Expanded(
-            child: mainContent,
-          ),
+
+          //Expanded(child: 
+            mainContent,
+          //),
+
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
           ),
+
         ],
       ),
     );

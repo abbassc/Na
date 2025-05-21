@@ -12,6 +12,7 @@ class DonationsList extends StatelessWidget{
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: donationsList.length,
+      shrinkWrap: true,
       itemBuilder: (context, index) => DonationCard(donationsList[index])
     );
   }

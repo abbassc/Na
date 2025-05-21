@@ -13,7 +13,7 @@ class VolunteersList extends StatelessWidget{
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: volunteersList.length,
-      //shrinkWrap: true,
+      shrinkWrap: true,
       itemBuilder: (context, index) => VolunteerCard(volunteersList[index])
     );
   }

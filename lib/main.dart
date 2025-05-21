@@ -1,19 +1,40 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:nahej_ali/app/nahej_ali_app.dart';
 import 'package:nahej_ali/data/donations.dart';
 import 'package:nahej_ali/data/volunteers.dart';
+import 'package:nahej_ali/db/nahejAli_storage.dart';
+import 'package:nahej_ali/models/donation.dart';
+import 'package:nahej_ali/models/volunteer.dart';
+// install and import sqflite_common_ffi if you are running a windows application
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
-void main() {
-  runApp(const MainApp());
+void main() async {
+  // a line required before any async code in main
+  WidgetsFlutterBinding.ensureInitialized();
+  // Change the database factory if you are running a windows application
+  if (Platform.isWindows) {
+    sqfliteFfiInit();
+    databaseFactory = databaseFactoryFfi;
+  }
+  // Load the donations and volunteers from the database
+  List<Donation> donationsList = await loadDonations();
+  List<Volunteer> volunteersList = await loadVolunteers();
+  // pass the loaded donations and volunteers to MainApp, which will pass them to NahejAliApp
+  runApp(MainApp(registeredDonations: donationsList, registeredVolunteers: volunteersList,));
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  const MainApp({required this.registeredDonations, required this.registeredVolunteers, super.key});
 
+  final List<Donation> registeredDonations;
+  final List<Volunteer> registeredVolunteers;
+  
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: NahejAliApp(registeredDonationsList: donations, registeredVolunteersList: volunteers,),
+        return MaterialApp(
+      home: NahejAliApp(registeredDonationsList: registeredDonations, registeredVolunteersList: registeredVolunteers),
       debugShowCheckedModeBanner: false,
     );
   }

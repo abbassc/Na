@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:nahej_ali/data/donations.dart';
+import 'package:nahej_ali/models/donation.dart';
+import 'package:nahej_ali/models/volunteer.dart';
 import 'package:nahej_ali/widgets/donations_list.dart';
 
 class VolunteerScreen extends StatelessWidget{
 
   final Function changeScreen;
+  final Function openAddVolunteerOverlay;
 
-  const VolunteerScreen(this.changeScreen,{super.key});
+  final List<Donation> registeredDonationsList;
+  final List<Volunteer> registeredVolunteersList;
+
+  const VolunteerScreen(
+    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.registeredDonationsList, required this.registeredVolunteersList, super.key}
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +42,7 @@ class VolunteerScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: Expanded(child: DonationsList(donations)),
+                  child: DonationsList(registeredDonationsList),
                 ),
               ],
             ),
@@ -58,7 +66,7 @@ class VolunteerScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: Expanded(child: DonationsList(donations)),
+                  child: DonationsList(registeredDonationsList),
                 ),
               ],
             ),
