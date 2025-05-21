@@ -54,7 +54,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: VolunteersList(volunteers),
+                  child: VolunteersList(registeredVolunteersList),
                 ),
               ],
             ),

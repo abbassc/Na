@@ -143,9 +143,9 @@ class _NahejAliAppState extends State<NahejAliApp>{
     }
 
     else if (activeScreenName == 'donor-screen') {
-      activeScreen = DonorScreen(changeScreen, _openAddDonationOverlay, 
-      //_addNewDonation, _deleteDonation
-      );
+      activeScreen = DonorScreen(changeScreen: changeScreen, openAddDonationOverlay: _openAddDonationOverlay, registeredDonationsList: widget.registeredDonationsList);
+      //DonorScreen(changeScreen, _openAddDonationOverlay, 
+      //_addNewDonation, _deleteDonation);
     }
 
     return Scaffold(

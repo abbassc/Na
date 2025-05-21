@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 enum Category {Money, Food, Clothes}
 
@@ -15,45 +17,50 @@ const categoryIcon = {
 };
 class Donation {
 
-  //final String title;
-  //final int id;
-  //final DateTime date;
+  final String id;
+  final String title;  
   final String location;
   final String time;
-  final double? amount;
+  final DateTime date;
   final Category category;
-  final bool isAssigned;
+  final double? amount;
+  bool isAssigned;
 
-  const Donation(this.location, this.time, [this.category = Category.Money, this.amount, this.isAssigned = false]);
+  //Donation(this.location, this.time, [this.category = Category.Money, this.amount, this.isAssigned = false]);
   Donation.named({
-    this.location = '',
-    this.time = '',
-    this.amount,
+    required this.title,
+    required this.location,
+    required this.time,
+    required this.date,
     this.category = Category.Money,
-    this.isAssigned = false
-  });
+    this.amount,
+    this.isAssigned = false,
+    id})
+    : id = id ?? Uuid().v4();
 
 
   void assign(){
     //isAssigned = true;
   }
 
+  String get formattedDate {
+    return DateFormat.yMd().format(date);
+  }
+
+  Map<String, Object?> get donationMap {
+  return {
+    'id': id,
+    'title': title,
+    'location': location,
+    'time': time,
+    'date': date.millisecondsSinceEpoch,
+    'category': category.name,
+    'amount': amount,
+  };
 }
 
-
-/*enum Category { Money, Food, Clothes }
-
-class Donation {
-  final String location;
-  final String time;
-  final double? amount;
-  final Category category;
-
-  const Donation({
-    required this.location,
-    required this.time,
-    this.amount,
-    this.category = Category.Money,
-  });
 }
-*/
+
+// Create a getter to create a map for every donation object.
+// This map is used to insert data into the database.
+

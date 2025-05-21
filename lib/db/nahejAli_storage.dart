@@ -7,7 +7,7 @@ void insertDonation(Donation donation) async {
   NahejAliDatabase database = NahejAliDatabase();
   final db = await database.getDatabase();
   // insert donation into the database
-  /////////db.insert('donations', donation.donationMap);
+  db.insert('donations', donation.donationMap);
 }
 
 Future<List<Donation>> loadDonations() async {
@@ -20,11 +20,11 @@ Future<List<Donation>> loadDonations() async {
   List<Donation> resultList = result.map((row) {
     return Donation.named(
       // cast every object into its corresponding type
-      /////////id: row['id'] as String,
+      id: row['id'] as String,
       amount: row['amount'] as double,
-      /////////title: row['title'] as String,
+      title: row['title'] as String,
       // covert the date int from milliseconds to a DateTime object
-      /////////date: DateTime.fromMillisecondsSinceEpoch(row['date'] as int),
+      date: DateTime.fromMillisecondsSinceEpoch(row['date'] as int),
       //convert every category string into type Category enum
       // Use ! at the end of the variable name to tell Dart not to check for null values
       category: categoryName[row['category'] as String]!,
@@ -41,7 +41,7 @@ void deleteDonation(Donation donation) async {
   NahejAliDatabase database = NahejAliDatabase();
   final db = await database.getDatabase();
   // delete a donation with a specific id
-  ////////db.delete('donations', where: 'id = ?', whereArgs: [donation.id]);
+  db.delete('donations', where: 'id = ?', whereArgs: [donation.id]);
 }
 
 
@@ -54,7 +54,7 @@ void insertVolunteer(Volunteer volunteer) async {
   NahejAliDatabase database = NahejAliDatabase();
   final db = await database.getDatabase();
   // insert donation into the database
-  /////////db.insert('volunteers', volunteer.volunteerMap);
+  db.insert('volunteers', volunteer.volunteerMap);
 }
 
 Future<List<Volunteer>> loadVolunteers() async {
@@ -67,11 +67,12 @@ Future<List<Volunteer>> loadVolunteers() async {
   List<Volunteer> resultList = result.map((row) {
     return Volunteer.named(
       // cast every object into its corresponding type
-      /////////id: row['id'] as String,
+      id: row['id'] as String,
       name: row['name'] as String,
       // Use ! at the end of the variable name to tell Dart not to check for null values
       location: row['location'] as String,
-      availability: row['availability'] as String,
+      availability: row['availability'] as String, 
+      phone: row['phone'] as int,
     );
   }).toList();
   // return the resulting donations list
@@ -83,5 +84,5 @@ void deleteVolunteer(Volunteer volunteer) async {
   NahejAliDatabase database = NahejAliDatabase();
   final db = await database.getDatabase();
   // delete a donation with a specific id
-  ////////db.delete('volunteers', where: 'id = ?', whereArgs: [volunteer.id]);
+  db.delete('volunteers', where: 'id = ?', whereArgs: [volunteer.id]);
 }

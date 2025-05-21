@@ -19,13 +19,17 @@ class _NewDonationState extends State<NewDonation> {
   // }
 
   final _titleController = TextEditingController();
-  final _amountController = TextEditingController();
+  final _locationController = TextEditingController();
+  final _timeController = TextEditingController();
   DateTime? _selectedDate;
   Category _selectedCategory = Category.Money;
+  final _amountController = TextEditingController();
 
   @override
   void dispose() {
     _titleController.dispose();
+    _locationController.dispose();
+    _timeController.dispose();
     _amountController.dispose();
     super.dispose();
   }
@@ -47,16 +51,19 @@ class _NewDonationState extends State<NewDonation> {
 
   void _submitDonationForm() {
     var enteredAmount = double.tryParse(_amountController.text);
-    var amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
+    var amountIsInvalid =  enteredAmount! <= 0;
     if (_titleController.text.trim().isEmpty ||
+        _locationController.text.trim().isEmpty ||
+        _timeController.text.trim().isEmpty ||
         amountIsInvalid ||
-        _selectedDate == null) {
+        _selectedDate == null
+        ) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
           title: Text('Invalid Input'),
           content: Text(
-              'Please make sure you eneter a valid title, amount, and date'),
+              'Please make sure you eneter a valid title, location, time, date and amount'),
           actions: [
             TextButton(
               onPressed: () {
@@ -71,12 +78,12 @@ class _NewDonationState extends State<NewDonation> {
     }
     // continue your code here
     Donation newDonation = Donation.named(
-        //////title: _titleController.text,
-        amount: enteredAmount,
-        //////date: _selectedDate!,
+        title: _titleController.text,
+        location: _locationController.text,
+        time: _timeController.text,
+        date: _selectedDate!,
         category: _selectedCategory,
-        ////////time: _timeController,
-        ///////location: _locationController
+        amount: enteredAmount,
         );
     widget.addNewDonation(newDonation);
     Navigator.pop(context);
@@ -94,6 +101,14 @@ class _NewDonationState extends State<NewDonation> {
             maxLength: 50,
             decoration: InputDecoration(
               label: Text("Donation Title"),
+            ),
+          ),
+          TextField(
+            //onChanged: _saveDonationLocation,
+            controller: _locationController,
+            maxLength: 200,
+            decoration: InputDecoration(
+              label: Text("Location"),
             ),
           ),
           Row(
@@ -128,6 +143,14 @@ class _NewDonationState extends State<NewDonation> {
             ],
           ),
           SizedBox(height: 16),
+          TextField(
+            //onChanged: _saveDonationTime,
+            controller: _timeController,
+            maxLength: 25,
+            decoration: InputDecoration(
+              label: Text("Time"),
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
