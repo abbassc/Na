@@ -10,6 +10,7 @@ class DonationCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       color: const Color.fromARGB(255, 208, 183, 134),
       child: Padding(
         padding: const EdgeInsets.symmetric(

@@ -81,11 +81,13 @@ class _NahejAliAppState extends State<NahejAliApp>{
 
 
   void _openAddVolunteerOverlay() {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (ctx) => NewVolunteer(_addNewVolunteer),
-    );
+    //WidgetsBinding.instance.addPostFrameCallback((_) {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (ctx) => NewVolunteer(_addNewVolunteer),
+      );
+    //});
   }
 
   void _addNewVolunteer(Volunteer volunteer) async {
@@ -104,22 +106,24 @@ class _NahejAliAppState extends State<NahejAliApp>{
       // delete the volunteer from the database
       deleteVolunteer(volunteer);
     });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Volunteer Deleted"),
-        duration: Duration(seconds: 3),
-        action: SnackBarAction(
-          label: 'Undo',
-          onPressed: () {
-            setState(() {
-              widget.registeredVolunteersList.insert(index, volunteer);
-              // insret the volunteer again if the user revert the action
-              insertVolunteer(volunteer);
-            });
-          },
+    //WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Volunteer Deleted"),
+          duration: Duration(seconds: 3),
+          action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                widget.registeredVolunteersList.insert(index, volunteer);
+                // insret the volunteer again if the user revert the action
+                insertVolunteer(volunteer);
+              });
+            },
+          ),
         ),
-      ),
-    );
+      );
+    //});
   }
 
 
@@ -134,16 +138,16 @@ class _NahejAliAppState extends State<NahejAliApp>{
     Widget activeScreen = HomeScreen(changeScreen);
 
     if (activeScreenName == 'admin-screen') {
-      activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList);
+      activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer,);
        //_addNewVolunteer, _deleteVolunteer
     }
     
     else if (activeScreenName == 'volunteer-screen') {
-      activeScreen = VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList);
+      activeScreen = VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: _deleteVolunteer,);
     }
 
     else if (activeScreenName == 'donor-screen') {
-      activeScreen = DonorScreen(changeScreen: changeScreen, openAddDonationOverlay: _openAddDonationOverlay, registeredDonationsList: widget.registeredDonationsList);
+      activeScreen = DonorScreen(changeScreen: changeScreen, openAddDonationOverlay: _openAddDonationOverlay, registeredDonationsList: widget.registeredDonationsList, deleteDonation: _deleteDonation,);
       //DonorScreen(changeScreen, _openAddDonationOverlay, 
       //_addNewDonation, _deleteDonation);
     }

@@ -9,17 +9,21 @@ class VolunteerCard extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+
     return Card(
-      color: const Color.fromARGB(255, 215, 215, 215),
+      //margin: EdgeInsets.only(),
+      //semanticContainer: false,
+      shadowColor: Color.fromARGB(255, 208, 183, 134),
+      surfaceTintColor: Color.fromARGB(255, 255, 255, 255),
+      //clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      color: const Color.fromARGB(204, 27, 136, 134),
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 16,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(volunteer.location, style: TextStyle(fontWeight: FontWeight.bold,)),
+            Text(volunteer.location, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
             Text(volunteer.availability, style: TextStyle(fontWeight: FontWeight.bold,)),
             SizedBox(height: 4),
             Row(

@@ -94,19 +94,15 @@ class _NewVolunteerState extends State<NewVolunteer> {
           TextField(
             //onChanged: _saveVolunteerName,
             controller: _phoneController,
+            keyboardType: TextInputType.number,
             maxLength: 13,
             decoration: InputDecoration(
               label: Text("Phone"),
             ),
+            inputFormatters: <TextInputFormatter>[
+             FilteringTextInputFormatter.digitsOnly
+            ]
           ),
-
-          // TextField(
-          //     decoration: InputDecoration(labelText: "Enter your number"),
-          //     keyboardType: TextInputType.number,
-          //     inputFormatters: <TextInputFormatter>[
-          //       FilteringTextInputFormatter.digitsOnly
-          //     ], // Only numbers can be entered
-          //   ),
 
           TextField(
             //onChanged: _saveVolunteerName,

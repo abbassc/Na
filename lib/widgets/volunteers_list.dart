@@ -7,14 +7,57 @@ class VolunteersList extends StatelessWidget{
 
   final List<Volunteer> volunteersList;
 
-  const VolunteersList(this.volunteersList, {super.key,});
+  final void Function(Volunteer) onDeleteVolunteer;
+
+  const VolunteersList({required this.volunteersList, required this.onDeleteVolunteer, super.key,});
+
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemCount: volunteersList.length,
       shrinkWrap: true,
-      itemBuilder: (context, index) => VolunteerCard(volunteersList[index])
+      itemBuilder: (context, index) => //VolunteerCard(volunteersList[index])
+      Dismissible(
+        background: Container(
+          padding: EdgeInsets.only(left: 12),
+          decoration: BoxDecoration(color: const Color.fromARGB(255, 173, 25, 15), borderRadius: BorderRadius.circular(20)),
+          alignment: Alignment.centerLeft,
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+            size: 25,
+          ),
+        ),
+        key: ValueKey(volunteersList[index]),
+        child: ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(volunteersList[index])),
+        onDismissed: (direction) {
+          onDeleteVolunteer(volunteersList[index]);
+        },
+        // confirmDismiss: (direction) {
+        //   return showDialog(
+        //     context: context,
+        //     builder: (ctx) => AlertDialog(
+        //       actions: [
+        //         TextButton(
+        //           onPressed: () {
+        //             Navigator.pop(context, false);
+        //           },
+        //           child: Text('No'),
+        //         ),
+        //         TextButton(
+        //           onPressed: () {
+        //             Navigator.pop(context, true);
+        //           },
+        //           child: Text('Yes'),
+        //         )
+        //       ],
+        //       title: Text('Delete Expense'),
+        //       content: Text('Are you sure you want to delete this expense?'),
+        //     ),
+        //   );
+        // },
+      ),
     );
   }
 }

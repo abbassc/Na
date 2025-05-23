@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nahej_ali/data/donations.dart';
 import 'package:nahej_ali/data/volunteers.dart';
+import 'package:nahej_ali/db/nahejAli_storage.dart';
 import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
 import 'package:nahej_ali/widgets/donations_list.dart';
@@ -10,16 +11,19 @@ class AdminScreen extends StatelessWidget{
 
   final Function changeScreen;
   
-  final Function openAddVolunteerOverlay;
+  final VoidCallback openAddVolunteerOverlay;
+  //final Function openAddVolunteerOverlay;
 
   final List<Donation> registeredDonationsList;
   final List<Volunteer> registeredVolunteersList;
   //final Function addNewVolunteer;
-  //final Function deleteVolunteer;
+  final Function deleteVolunteer;
+  final Function deleteDonation;
+
 
   const AdminScreen( 
-  //this.addNewVolunteer, this.deleteVolunteer, 
-    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.registeredDonationsList, required this.registeredVolunteersList, super.key}
+  // this.deleteVolunteer, 
+    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.deleteDonation, required this.registeredDonationsList, required this.registeredVolunteersList, super.key}
   );
 
   @override
@@ -40,7 +44,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                     width: 141,
                     height: 28,
-                    child: ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: (){openAddVolunteerOverlay();}, child: Text('Add Volunteer')),
+                    child: ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: openAddVolunteerOverlay, child: Text('Add Volunteer')),
                   ),
               ],
             ),
@@ -54,7 +58,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: VolunteersList(registeredVolunteersList),
+                  child: VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}),
                 ),
               ],
             ),
@@ -78,7 +82,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: DonationsList(registeredDonationsList),
+                  child: DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}),
                 ),
               ],
             ),

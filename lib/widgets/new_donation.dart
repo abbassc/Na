@@ -51,7 +51,10 @@ class _NewDonationState extends State<NewDonation> {
 
   void _submitDonationForm() {
     var enteredAmount = double.tryParse(_amountController.text);
-    var amountIsInvalid =  enteredAmount! <= 0;
+    var amountIsInvalid = false;
+    if(enteredAmount != null){
+      amountIsInvalid =  enteredAmount <= 0;
+      }
     if (_titleController.text.trim().isEmpty ||
         _locationController.text.trim().isEmpty ||
         _timeController.text.trim().isEmpty ||

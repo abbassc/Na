@@ -5,9 +5,9 @@ import 'package:uuid/uuid.dart';
 enum Category {Money, Food, Clothes}
 
 const categoryName = {
-  'money': Category.Money,
-  'food': Category.Food,
-  'clothes': Category.Clothes,
+  'Money': Category.Money,
+  'Food': Category.Food,
+  'Clothes': Category.Clothes,
   };
 
 const categoryIcon = {
@@ -33,7 +33,7 @@ class Donation {
     required this.time,
     required this.date,
     this.category = Category.Money,
-    this.amount,
+    this.amount = 1,
     this.isAssigned = false,
     id})
     : id = id ?? Uuid().v4();

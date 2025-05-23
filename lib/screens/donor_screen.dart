@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:nahej_ali/db/nahejAli_storage.dart';
 import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/widgets/donations_list.dart';
 
 class DonorScreen extends StatelessWidget{
 
   final Function changeScreen;
-  final Function openAddDonationOverlay;
+  final VoidCallback openAddDonationOverlay;
   //final Function addNewDonation;
-  //final Function deleteDonation;
+  final Function deleteDonation;
 
   final List<Donation> registeredDonationsList;
 
   const DonorScreen(
     //this.changeScreen, this.openAddDonationOverlay, 
   //this.addNewDonation, this.deleteDonation, 
-      {required this.changeScreen, required this.openAddDonationOverlay, required this.registeredDonationsList, super.key}
+      {required this.changeScreen, required this.openAddDonationOverlay, required this.deleteDonation, required this.registeredDonationsList, super.key}
   );
 
   @override
@@ -33,10 +34,7 @@ class DonorScreen extends StatelessWidget{
       ),
     );
     if (registeredDonationsList.isNotEmpty) {
-      mainContent = DonationsList(
-        registeredDonationsList
-        //onDeleteExpense: _deleteExpense,
-      );
+      mainContent = DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);});
     }
 
     return Scaffold(
@@ -46,7 +44,7 @@ class DonorScreen extends StatelessWidget{
         foregroundColor: const Color.fromARGB(255, 27, 136, 134),
         actions: [
           IconButton(
-            onPressed: (){openAddDonationOverlay();},
+            onPressed: openAddDonationOverlay,
             icon: Icon(Icons.add),
           ),
         ],

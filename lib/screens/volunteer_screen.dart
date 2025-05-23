@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nahej_ali/data/donations.dart';
+import 'package:nahej_ali/db/nahejAli_storage.dart';
 import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
 import 'package:nahej_ali/widgets/donations_list.dart';
@@ -8,12 +9,14 @@ class VolunteerScreen extends StatelessWidget{
 
   final Function changeScreen;
   final Function openAddVolunteerOverlay;
+  final Function deleteVolunteer;
+
 
   final List<Donation> registeredDonationsList;
   final List<Volunteer> registeredVolunteersList;
 
   const VolunteerScreen(
-    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.registeredDonationsList, required this.registeredVolunteersList, super.key}
+    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, super.key}
   );
 
   @override
@@ -42,7 +45,7 @@ class VolunteerScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: DonationsList(registeredDonationsList),
+                  child: DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (volunteer){deleteVolunteer(volunteer);}),
                 ),
               ],
             ),
@@ -66,7 +69,7 @@ class VolunteerScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: DonationsList(registeredDonationsList),
+                  child: DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}),
                 ),
               ],
             ),
