@@ -36,9 +36,9 @@ class _NewVolunteerState extends State<NewVolunteer> {
 
   void _submitVolunteerForm() {
     var enteredPhone = int.tryParse(_phoneController.text);
-    int min = 70000000;
+    int min = 1000000;
     int max = 96181999999;
-    var phoneIsInvalid = enteredPhone == null || enteredPhone.bitLength < min.bitLength || enteredPhone.bitLength > max.bitLength;
+    var phoneIsInvalid = enteredPhone == null || enteredPhone/*.bitLength*/ < min/*.bitLength*/ || enteredPhone/*.bitLength*/ > max/*.bitLength*/;
     if (_nameController.text.trim().isEmpty ||
         phoneIsInvalid || 
         _locationController.text.trim().isEmpty || 

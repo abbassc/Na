@@ -21,7 +21,7 @@ Future<List<Donation>> loadDonations() async {
     return Donation.named(
       // cast every object into its corresponding type
       id: row['id'] as String,
-      amount: row['amount'] as double,
+      amount: 0,//row['amount'] as double,
       title: row['title'] as String,
       // covert the date int from milliseconds to a DateTime object
       date: DateTime.fromMillisecondsSinceEpoch(row['date'] as int),
