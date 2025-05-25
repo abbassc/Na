@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:nahej_ali/models/volunteer.dart';
 import 'package:uuid/uuid.dart';
 
 enum Category {Money, Food, Clothes}
@@ -25,6 +26,8 @@ class Donation {
   final Category category;
   final double? amount;
   bool isAssigned;
+  bool isCollected = false;
+  Volunteer? volunteerAssigned;
 
   //Donation(this.location, this.time, [this.category = Category.Money, this.amount, this.isAssigned = false]);
   Donation.named({
@@ -40,8 +43,14 @@ class Donation {
 
 
   void assign(){
-    //isAssigned = true;
+    isAssigned = true;
   }
+
+  void collect(){
+    isCollected = true;
+  }
+
+  
 
   String get formattedDate {
     return DateFormat.yMd().format(date);

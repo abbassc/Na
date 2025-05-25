@@ -9,6 +9,10 @@ import 'package:nahej_ali/widgets/volunteers_list.dart';
 
 class AdminScreen extends StatelessWidget{
 
+  final Function openAssignTo;
+  final Function reserve;
+  final Function isCollected;
+
   final Function changeScreen;
   
   final VoidCallback openAddVolunteerOverlay;
@@ -23,11 +27,12 @@ class AdminScreen extends StatelessWidget{
 
   const AdminScreen( 
   // this.deleteVolunteer, 
-    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.deleteDonation, required this.registeredDonationsList, required this.registeredVolunteersList, super.key}
+    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.deleteDonation, required this.registeredDonationsList, required this.registeredVolunteersList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected}
   );
 
   @override
   Widget build(BuildContext context) {
+    //var activeScreenName= 'admin-screen';
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -58,7 +63,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}),
+                  child: VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,),
                 ),
               ],
             ),
@@ -82,7 +87,7 @@ class AdminScreen extends StatelessWidget{
                 SizedBox(
                   width: 300,
                   height: 200,
-                  child: DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}),
+                  child: DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,),
                 ),
               ],
             ),

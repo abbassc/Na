@@ -5,7 +5,9 @@ import 'package:nahej_ali/models/volunteer.dart';
 import 'package:nahej_ali/screens/admin_screen.dart';
 import 'package:nahej_ali/screens/donor_screen.dart';
 import 'package:nahej_ali/screens/home_screen.dart';
+import 'package:nahej_ali/screens/volunteer_login.dart';
 import 'package:nahej_ali/screens/volunteer_screen.dart';
+import 'package:nahej_ali/widgets/assign_to.dart';
 import 'package:nahej_ali/widgets/new_donation.dart';
 import 'package:nahej_ali/widgets/new_volunteer.dart';
 
@@ -32,6 +34,28 @@ class _NahejAliAppState extends State<NahejAliApp>{
     });
   }
 
+  void _openAssignToOverlay() {
+    //WidgetsBinding.instance.addPostFrameCallback((_) {
+      showModalBottomSheet(
+        isScrollControlled: true,
+        context: context,
+        builder: (ctx) => AssignTo(_assignTo),
+      );
+    //});
+  }
+
+  void _assignTo(Donation donation, Volunteer volunteer) async {
+    setState(() {
+      donation.volunteerAssigned = volunteer;
+      donation.assign();
+    });
+  }
+
+  void _isCollected(Donation donation) async {
+    setState(() {
+      donation.collect();
+    });
+  }
 
 
 
@@ -138,16 +162,20 @@ class _NahejAliAppState extends State<NahejAliApp>{
     Widget activeScreen = HomeScreen(changeScreen);
 
     if (activeScreenName == 'admin-screen') {
-      activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer,);
+      activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected,);
        //_addNewVolunteer, _deleteVolunteer
     }
     
+    else if (activeScreenName == 'volunteer-login') {
+      activeScreen = VolunteerLogin(changeScreen, registeredVolunteersList: widget.registeredVolunteersList, registeredDonationsrsList: widget.registeredDonationsList, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, openAddVolunteerOverlay: _openAddVolunteerOverlay, deleteVolunteer: _deleteVolunteer,);
+    }
+
     else if (activeScreenName == 'volunteer-screen') {
-      activeScreen = VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: _deleteVolunteer,);
+      activeScreen = VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList:widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected,);
     }
 
     else if (activeScreenName == 'donor-screen') {
-      activeScreen = DonorScreen(changeScreen: changeScreen, openAddDonationOverlay: _openAddDonationOverlay, registeredDonationsList: widget.registeredDonationsList, deleteDonation: _deleteDonation,);
+      activeScreen = DonorScreen(changeScreen: changeScreen, openAddDonationOverlay: _openAddDonationOverlay, registeredDonationsList: widget.registeredDonationsList, deleteDonation: _deleteDonation, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected,);
       //DonorScreen(changeScreen, _openAddDonationOverlay, 
       //_addNewDonation, _deleteDonation);
     }

@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget{
             
             ElevatedButton.icon(style: ElevatedButton.styleFrom(
               shadowColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 204, 136, 1), foregroundColor: Color.fromARGB(255, 27, 136, 134)), 
-              onPressed: (){changeScreen('volunteer-screen');}, label: Text('Volunteer', style: TextStyle(
+              onPressed: (){changeScreen('volunteer-login');}, label: Text('Volunteer', style: TextStyle(
                 //color: Color.fromARGB(255, 208, 183, 134), 
                fontSize: 20),), icon: Image.asset('assets/images/volunteers.png', scale: 12,),),
             

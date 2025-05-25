@@ -6,6 +6,10 @@ import 'package:nahej_ali/widgets/donations_list.dart';
 class DonorScreen extends StatelessWidget{
 
   final Function changeScreen;
+  final Function openAssignTo;
+  final Function reserve;
+  final Function isCollected;
+
   final VoidCallback openAddDonationOverlay;
   //final Function addNewDonation;
   final Function deleteDonation;
@@ -15,7 +19,7 @@ class DonorScreen extends StatelessWidget{
   const DonorScreen(
     //this.changeScreen, this.openAddDonationOverlay, 
   //this.addNewDonation, this.deleteDonation, 
-      {required this.changeScreen, required this.openAddDonationOverlay, required this.deleteDonation, required this.registeredDonationsList, super.key}
+      {required this.changeScreen, required this.openAddDonationOverlay, required this.deleteDonation, required this.registeredDonationsList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected}
   );
 
   @override
@@ -34,7 +38,7 @@ class DonorScreen extends StatelessWidget{
       ),
     );
     if (registeredDonationsList.isNotEmpty) {
-      mainContent = DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);});
+      mainContent = DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'donor-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,);
     }
 
     return Scaffold(

@@ -1,18 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:intl/intl.dart';
+import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
 
-class NewVolunteer extends StatefulWidget {
-  const NewVolunteer(this.addNewVolunteer, {super.key});
+class AssignTo extends StatefulWidget{
 
-  final void Function(Volunteer) addNewVolunteer;
+  const AssignTo(void Function(Donation donation, Volunteer volunteer) assignTo, {super.key});
 
   @override
-  State<NewVolunteer> createState() => _NewVolunteerState();
+  State<StatefulWidget> createState() {
+    return _AssignToState();
+  }
 }
 
-class _NewVolunteerState extends State<NewVolunteer> {
+class _AssignToState extends State<AssignTo> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+
+
+/*class _NewVolunteerState extends State<NewVolunteer> {
   // String volunteerNamee = '';
 
   // void _saveVolunteerName(String input) {
@@ -153,3 +163,4 @@ class _NewVolunteerState extends State<NewVolunteer> {
     );
   }
 }
+*/
