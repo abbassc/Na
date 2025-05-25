@@ -8,7 +8,7 @@ class VolunteerCard extends StatelessWidget{
 
   final Volunteer volunteer;
   final String activeScreen;
-  final Volunteer? volunteerLogged;
+  //final Volunteer? volunteerLogged;
 
   final Function openAssignTo;
   final Function changeScreen;
@@ -20,7 +20,7 @@ class VolunteerCard extends StatelessWidget{
   final List<Donation> registeredDonationsList;
   final List<Volunteer> registeredVolunteersList;
 
-  const VolunteerCard(this.volunteer, {super.key, required this.activeScreen, this.volunteerLogged, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList,});
+  const VolunteerCard(this.volunteer, {super.key, required this.activeScreen, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList,});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class VolunteerCard extends StatelessWidget{
             //     builder: (ctx) => VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: openAddVolunteerOverlay, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: openAddVolunteerOverlay, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,)
             //   )
             // );
-            changeScreen('volunteer-screen');
+            changeScreen('volunteer-screen', volunteer: volunteer);
           },
           child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),

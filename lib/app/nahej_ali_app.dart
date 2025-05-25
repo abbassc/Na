@@ -25,10 +25,15 @@ class NahejAliApp extends StatefulWidget{
 
 class _NahejAliAppState extends State<NahejAliApp>{
 
+  late Volunteer loggedVolunteer;
+
   String activeScreenName = 'home-screen';
 
-  void changeScreen(String screenName){
+  void changeScreen(String screenName, {Volunteer? volunteer}){
     activeScreenName = screenName;
+    if (screenName == 'volunteer-screen'){
+      loggedVolunteer = volunteer!;
+    }
     setState(() {
       
     });
@@ -171,7 +176,7 @@ class _NahejAliAppState extends State<NahejAliApp>{
     }
 
     else if (activeScreenName == 'volunteer-screen') {
-      activeScreen = VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList:widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected,);
+      activeScreen = VolunteerScreen(volunteerLogged: loggedVolunteer, changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList:widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected,);
     }
 
     else if (activeScreenName == 'donor-screen') {

@@ -76,7 +76,7 @@ class VolunteerScreen extends StatelessWidget{
                   SizedBox(
                     width: 300,
                     height: 200,
-                    child: DonationsList(part: 'available', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,),
+                    child: DonationsList(part: 'available', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,),
                   ),
                 ],
               ),

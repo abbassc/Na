@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:nahej_ali/db/nahejAli_storage.dart';
 import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
 import 'package:nahej_ali/widgets/volunteers_list.dart';
 
 class VolunteerLogin extends StatelessWidget{
 
-  const VolunteerLogin(this.changeScreen, {super.key, required this.registeredVolunteersList, required this.registeredDonationsrsList, required this.openAssignTo, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, this.volunteerLogged,});
+  const VolunteerLogin(this.changeScreen, {super.key, required this.registeredVolunteersList, required this.registeredDonationsrsList, required this.openAssignTo, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer,});
 
   final Function changeScreen;
   final List<Volunteer> registeredVolunteersList;
@@ -17,7 +16,6 @@ class VolunteerLogin extends StatelessWidget{
   final Function isCollected;
   final Function openAddVolunteerOverlay;
   final Function deleteVolunteer;
-  final Volunteer? volunteerLogged;
 
 
   @override
