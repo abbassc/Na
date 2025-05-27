@@ -3,9 +3,10 @@ import 'package:nahej_ali/models/donation.dart';
 import 'package:intl/intl.dart';
 
 class NewDonation extends StatefulWidget {
-  const NewDonation(this.addNewDonation, {super.key});
+  const NewDonation(this.addNewDonation, {super.key, /*required this.itNeedsCar*/});
 
   final void Function(Donation) addNewDonation;
+  //final void Function(Donation donation, bool value) itNeedsCar;
 
   @override
   State<NewDonation> createState() => _NewDonationState();
@@ -23,7 +24,9 @@ class _NewDonationState extends State<NewDonation> {
   final _timeController = TextEditingController();
   DateTime? _selectedDate;
   Category _selectedCategory = Category.Money;
+  bool needsCar = false;
   final _amountController = TextEditingController();
+  final _phoneController = TextEditingController();
 
   @override
   void dispose() {
@@ -31,6 +34,7 @@ class _NewDonationState extends State<NewDonation> {
     _locationController.dispose();
     _timeController.dispose();
     _amountController.dispose();
+    _phoneController.dispose();
     super.dispose();
   }
 
@@ -50,16 +54,23 @@ class _NewDonationState extends State<NewDonation> {
   }
 
   void _submitDonationForm() {
+    var enteredPhone = int.tryParse(_phoneController.text);
+    int min = 3000000;
+    int max = 96181999999;
+    var phoneIsInvalid = enteredPhone == null || enteredPhone/*.bitLength*/ < min/*.bitLength*/ || enteredPhone/*.bitLength*/ > max/*.bitLength*/;
     var enteredAmount = double.tryParse(_amountController.text);
     var amountIsInvalid = false;
     if(enteredAmount != null){
       amountIsInvalid =  enteredAmount <= 0;
       }
+    //enteredAmount ??= 0;
+    //needsCar ??= false;
     if (_titleController.text.trim().isEmpty ||
         _locationController.text.trim().isEmpty ||
         _timeController.text.trim().isEmpty ||
         amountIsInvalid ||
-        _selectedDate == null
+        _selectedDate == null ||
+        phoneIsInvalid
         ) {
       showDialog(
         context: context,
@@ -79,7 +90,7 @@ class _NewDonationState extends State<NewDonation> {
       );
       return;
     }
-    // continue your code here
+    enteredAmount ??= 0;
     Donation newDonation = Donation.named(
         title: _titleController.text,
         location: _locationController.text,
@@ -87,6 +98,8 @@ class _NewDonationState extends State<NewDonation> {
         date: _selectedDate!,
         category: _selectedCategory,
         amount: enteredAmount,
+        donorPhone: enteredPhone,
+        needsCar: needsCar,
         );
     widget.addNewDonation(newDonation);
     Navigator.pop(context);
@@ -104,6 +117,14 @@ class _NewDonationState extends State<NewDonation> {
             maxLength: 50,
             decoration: InputDecoration(
               label: Text("Donation Title"),
+            ),
+          ),
+          TextField(
+            //onChanged: _saveDonationLocation,
+            controller: _phoneController,
+            maxLength: 13,
+            decoration: InputDecoration(
+              label: Text("Phone Number"),
             ),
           ),
           TextField(
@@ -149,7 +170,7 @@ class _NewDonationState extends State<NewDonation> {
           TextField(
             //onChanged: _saveDonationTime,
             controller: _timeController,
-            maxLength: 25,
+            maxLength: 10,
             decoration: InputDecoration(
               label: Text("Time"),
             ),
@@ -186,9 +207,69 @@ class _NewDonationState extends State<NewDonation> {
                 child: Text('Save Donation'),
               ),
             ],
-          )
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: CheckboxListTile(title: Text('Donation needs car?'), 
+                  value: needsCar, 
+                  onChanged: (ischecked){
+                    setState(
+                      () {
+                        needsCar = ischecked ?? false;
+                      }
+                    );
+                  }
+                )
+              ),
+            ],
+          ),
+
+          // Column(
+          //   children: [
+          //     Text('Needs Car?'),
+          //      RadioListTile<bool>(
+          //       title: Text('yes'),
+          //       value: true,
+          //       groupValue: needsCar,
+          //       onChanged: (value) {
+          //         setState(() {
+          //           needsCar = value!;
+          //         });
+          //       },
+          //     ),
+          //     RadioListTile<bool>(
+          //       title: Text('no'),
+          //       value: false,
+          //       groupValue: needsCar,
+          //       onChanged: (value) {
+          //         setState(() {
+          //           needsCar = value!;
+          //         });
+          //       },
+          //     ),
+          //   ]
+          // ),
+          //RadioListTile(value: needsCar, groupValue: [true, false], onChanged: onChanged)
         ],
       ),
     );
   }
 }
+
+
+// String errorMessage = '';
+// if (_titleController.text.trim().isEmpty) errorMessage += '• Title is required.\n';
+// if (_locationController.text.trim().isEmpty) errorMessage += '• Location is required.\n';
+// // ...
+// if (errorMessage.isNotEmpty) {
+//   showDialog(
+//     context: context,
+//     builder: (ctx) => AlertDialog(
+//       title: Text('Invalid Input'),
+//       content: Text(errorMessage),
+//       actions: [TextButton(onPressed: () => Navigator.pop(ctx), child: Text('Close'))],
+//     ),
+//   );
+//   return;
+// }

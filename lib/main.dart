@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:nahej_ali/app/nahej_ali_app.dart';
-import 'package:nahej_ali/data/donations.dart';
-import 'package:nahej_ali/data/volunteers.dart';
+//import 'package:nahej_ali/data/donations.dart';
+//import 'package:nahej_ali/data/volunteers.dart';
 import 'package:nahej_ali/db/nahejAli_storage.dart';
 import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
@@ -19,8 +19,8 @@ void main() async {
     databaseFactory = databaseFactoryFfi;
   }
   // Load the donations and volunteers from the database
-  List<Donation> donationsList = await loadDonations();
   List<Volunteer> volunteersList = await loadVolunteers();
+  List<Donation> donationsList = await loadDonations();
   // pass the loaded donations and volunteers to MainApp, which will pass them to NahejAliApp
   runApp(MainApp(registeredDonations: donationsList, registeredVolunteers: volunteersList,));
 }

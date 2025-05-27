@@ -18,23 +18,238 @@ class DonationCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
+    Widget car = SizedBox(height: 0, width: 0,);
+    if(donation.needsCar == true){
+      car = Text('Needs Car!');
+    }
+    
+    Widget amount = SizedBox(height: 0, width: 0,);
+    if(donation.amount !=null && donation.amount != 0){
+      amount = Text("\$${donation.amount!.toStringAsFixed(2)}");
+    }
+
     Widget button = SizedBox(height: 0, width: 0,);
+    Widget card = SizedBox(height: 0, width: 0,);
+    
+    //NOT Assigned donations in ADMIN screen
     if (!donation.isAssigned && activeScreenName == 'admin-screen') {
       button = ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 27, 136, 134), foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
-              onPressed: (){openAssignTo();}, 
+              onPressed: (){openAssignTo(donation);}, 
               child: Text('Assign to')
             );
+      card =  Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          color: const Color.fromARGB(255, 208, 183, 134),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      //Text(donation.title, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.category.name, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.amount.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.location, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.date.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          amount,
+                          Spacer(),
+                          Row(
+                            spacing: 2,
+                            children: [
+                              //Icon(categoryIcon[donation.category]),
+                              //SizedBox(width: 8),
+                              Text(donation.formattedDate, style: TextStyle(fontWeight: FontWeight.bold,)),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Text(donation.time, style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ],
+                  ),
+                ),
+
+                button,
+
+              ],
+            ),
+          ),
+        );
     }
-    if(donation.isAssigned && activeScreenName == 'volunteer-screen' && donation.volunteerAssigned == volunteerLogged ){
+
+    //Assigned donations in ADMIN screen
+    if (donation.isAssigned && activeScreenName == 'admin-screen') {
+      if (donation.volunteerAssigned != null){
+        button = Container(color: Colors.orangeAccent,child: Text(donation.volunteerAssigned!.name, style: TextStyle(fontWeight: FontWeight.bold),), );
+        if(donation.isCollected){ button = Container(color: Colors.greenAccent,child: Text(donation.volunteerAssigned!.name, style: TextStyle(fontWeight: FontWeight.bold),), );}
+        }
+
+      card =  Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          color: const Color.fromARGB(255, 208, 183, 134),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      //Text(donation.title, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.category.name, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.amount.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.location, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.date.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          amount,
+                          Spacer(),
+                          Row(
+                            spacing: 2,
+                            children: [
+                              //Icon(categoryIcon[donation.category]),
+                              //SizedBox(width: 8),
+                              Text(donation.formattedDate, style: TextStyle(fontWeight: FontWeight.bold,)),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+
+                button,
+
+              ],
+            ),
+          ),
+        );
+    }
+
+    // Assigned donations to a specific Volunteer in VOLUNTEER screen
+    if(donation.isAssigned && activeScreenName == 'volunteer-screen' && donation.volunteerAssigned == volunteerLogged && !donation.isCollected){
       button = ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
               onPressed:(){ 
-                isCollected(donation);
+                isCollected(donation, volunteerLogged);
                 }, 
               child: Text('Complete')
             );
+      card =  Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          color: const Color.fromARGB(255, 208, 183, 134),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      //Text(donation.title, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.category.name, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.amount.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.location, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.date.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          amount,
+                          Spacer(),
+                          Row(
+                            spacing: 2,
+                            children: [
+                              //Icon(categoryIcon[donation.category]),
+                              //SizedBox(width: 8),
+                              Text(donation.formattedDate, style: TextStyle(fontWeight: FontWeight.bold,)),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Text(donation.time, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.donorPhone.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      car,
+                    ],
+                  ),
+                ),
+
+                button,
+
+              ],
+            ),
+          ),
+        );
     }
+
+    // Completed donations by a specific Volunteer in VOLUNTEER screen
+    if(donation.isAssigned && activeScreenName == 'volunteer-screen' && donation.volunteerAssigned == volunteerLogged && donation.isCollected){
+      button = Container(color: Colors.greenAccent, child: Text('Complete'),);
+      card =  Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          color: const Color.fromARGB(255, 208, 183, 134),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      //Text(donation.title, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.category.name, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.amount.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.location, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.date.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      SizedBox(height: 4),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          amount,
+                          Spacer(),
+                          Row(
+                            spacing: 2,
+                            children: [
+                              //Icon(categoryIcon[donation.category]),
+                              //SizedBox(width: 8),
+                              Text(donation.formattedDate, style: TextStyle(fontWeight: FontWeight.bold,)),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+
+                button,
+
+              ],
+            ),
+          ),
+        );
+    }
+
+    //NOT Assigned donations (AVAILABLE) in Volunteer screen
     if (!donation.isAssigned && activeScreenName == 'volunteer-screen'){
       button = ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
@@ -43,49 +258,57 @@ class DonationCard extends StatelessWidget{
                 }, 
               child: Text('Reserve')
             );
-    }
-    
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: const Color.fromARGB(255, 208, 183, 134),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 16,
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(donation.location, style: TextStyle(fontWeight: FontWeight.bold,)),
-                  Text(donation.time, style: TextStyle(fontWeight: FontWeight.bold,)),
-                  SizedBox(height: 4),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      card =  Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          color: const Color.fromARGB(255, 208, 183, 134),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 16,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      //Text("\$${donation.amount!.toStringAsFixed(2)}"),
-                      Spacer(),
+                      //Text(donation.title, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.category.name, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.amount.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      Text(donation.location, style: TextStyle(fontWeight: FontWeight.bold,)),
+                      //Text(donation.date.toString(), style: TextStyle(fontWeight: FontWeight.bold,)),
+                      SizedBox(height: 4),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          //Icon(categoryIcon[expense.category]),
-                          SizedBox(width: 8),
-                          //Text(expense.formattedDate)
+                          //amount,
+                          Spacer(),
+                          Row(
+                            spacing: 2,
+                            children: [
+                              //Icon(categoryIcon[donation.category]),
+                              //SizedBox(width: 8),
+                              Text(donation.formattedDate, style: TextStyle(fontWeight: FontWeight.bold,)),
+                            ],
+                          ),
                         ],
                       ),
+                      Text('Time: ${donation.time}', style: TextStyle(fontWeight: FontWeight.bold,)),
                     ],
                   ),
-                ],
-              ),
+                ),
+
+                button,
+
+              ],
             ),
+          ),
+        );
+    }
 
-            button,
 
-          ],
-        ),
-      ),
-    );
+    
+    return card;
   }
 }
 
@@ -167,6 +390,54 @@ class DonationCard extends StatelessWidget {
 
 
 
+// Widget buildCardContent({
+//   required String category,
+//   required String location,
+//   required String date,
+//   required String time,
+//   required Widget amount,
+//   required Widget button,
+//   Widget? carInfo,
+//   String? phone,
+// }) {
+//   return Card(
+//     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+//     color: const Color.fromARGB(255, 208, 183, 134),
+//     child: Padding(
+//       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+//       child: Row(
+//         children: [
+//           Expanded(
+//             child: Column(
+//               mainAxisSize: MainAxisSize.min,
+//               children: [
+//                 Text(category, style: const TextStyle(fontWeight: FontWeight.bold)),
+//                 Text(location, style: const TextStyle(fontWeight: FontWeight.bold)),
+//                 const SizedBox(height: 4),
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     amount,
+//                     const Spacer(),
+//                     Row(
+//                       children: [
+//                         Text(date, style: const TextStyle(fontWeight: FontWeight.bold)),
+//                       ],
+//                     ),
+//                   ],
+//                 ),
+//                 Text(time, style: const TextStyle(fontWeight: FontWeight.bold)),
+//                 if (phone != null) Text(phone, style: const TextStyle(fontWeight: FontWeight.bold)),
+//                 if (carInfo != null) carInfo,
+//               ],
+//             ),
+//           ),
+//           button,
+//         ],
+//       ),
+//     ),
+//   );
+// }
 
 
 

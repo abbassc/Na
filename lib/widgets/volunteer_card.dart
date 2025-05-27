@@ -9,6 +9,7 @@ class VolunteerCard extends StatelessWidget{
   final Volunteer volunteer;
   final String activeScreen;
   //final Volunteer? volunteerLogged;
+  final Donation? donationToAssig;
 
   final Function openAssignTo;
   final Function changeScreen;
@@ -20,7 +21,7 @@ class VolunteerCard extends StatelessWidget{
   final List<Donation> registeredDonationsList;
   final List<Volunteer> registeredVolunteersList;
 
-  const VolunteerCard(this.volunteer, {super.key, required this.activeScreen, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList,});
+  const VolunteerCard(this.volunteer, {super.key, required this.activeScreen, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, this.donationToAssig, });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,9 @@ class VolunteerCard extends StatelessWidget{
       
 
         child: InkWell(
-          splashColor: const Color.fromARGB(108, 155, 39, 176),
+          splashColor: const Color.fromARGB(255, 208, 183, 134),
+        //const Color.fromARGB(255, 208, 183, 134),
+        //const Color.fromARGB(255, 27, 136, 134),
           borderRadius: BorderRadius.circular(16),
           onTap: () {
             // Navigator.push(
@@ -46,15 +49,16 @@ class VolunteerCard extends StatelessWidget{
             //     builder: (ctx) => VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: openAddVolunteerOverlay, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: openAddVolunteerOverlay, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,)
             //   )
             // );
-            changeScreen('volunteer-screen', volunteer: volunteer);
+            changeScreen('volunteer-screen',volunteer: volunteer);
           },
           child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(volunteer.location, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
-              Text(volunteer.availability, style: TextStyle(fontWeight: FontWeight.bold,)),
+              Text(volunteer.name, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
+              //Text('id: ${volunteer.id}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
+              //Text('phone: ${volunteer.phone}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
               SizedBox(height: 4),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,6 +70,64 @@ class VolunteerCard extends StatelessWidget{
                       //Icon(categoryIcon[expense.category]),
                       SizedBox(width: 8),
                       //Text(expense.formattedDate)
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        ),
+      );
+    }
+
+    if(activeScreen == 'assign-to'){
+      return Card(
+        //margin: EdgeInsets.only(),
+        //semanticContainer: false,
+        shadowColor: const Color.fromARGB(204, 27, 136, 134),
+        surfaceTintColor: Color.fromARGB(255, 255, 255, 255),
+        //clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        color: Color.fromARGB(255, 208, 183, 134),
+      
+
+        child: InkWell(
+          splashColor: const Color.fromARGB(204, 27, 136, 134),
+        //const Color.fromARGB(255, 208, 183, 134),
+        //const Color.fromARGB(255, 27, 136, 134),
+          borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (ctx) => VolunteerScreen(changeScreen: changeScreen, openAddVolunteerOverlay: openAddVolunteerOverlay, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: openAddVolunteerOverlay, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,)
+            //   )
+            // );
+            //changeScreen('volunteer-screen', volunteer: volunteer);
+            reserve(donationToAssig, volunteer,);
+            Navigator.pop(context);
+          },
+          child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(volunteer.name, style: TextStyle(color: const Color.fromARGB(204, 27, 136, 134), fontWeight: FontWeight.bold, fontSize: 18)),
+              Text('Location: ${volunteer.location}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
+              Text('Availabilty: ${volunteer.availability}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
+
+              SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  
+                  Spacer(),
+                  Row(
+                    children: [
+                      
+                      SizedBox(width: 8),
+                      
                     ],
                   ),
                 ],
@@ -90,8 +152,9 @@ class VolunteerCard extends StatelessWidget{
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Text(volunteer.name, style: TextStyle(color: Color.fromARGB(255, 208, 183, 134), fontWeight: FontWeight.bold,fontSize: 16)),
             Text(volunteer.location, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
-            Text(volunteer.availability, style: TextStyle(fontWeight: FontWeight.bold,)),
+            Text('Availability: ${volunteer.availability}', style: TextStyle(fontWeight: FontWeight.bold,)),
             SizedBox(height: 4),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

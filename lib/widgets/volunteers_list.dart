@@ -19,10 +19,11 @@ class VolunteersList extends StatelessWidget{
 
   final List<Donation> registeredDonationsList;
   final List<Volunteer> registeredVolunteersList;
+  final Donation? donationToAssign;
 
   final void Function(Volunteer) onDeleteVolunteer;
 
-  const VolunteersList({required this.volunteersList, required this.onDeleteVolunteer, super.key, required this.activeScreenName, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList,});
+  const VolunteersList({required this.volunteersList, required this.onDeleteVolunteer, super.key, required this.activeScreenName, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, this.donationToAssign,});
 
 
   @override
@@ -73,6 +74,14 @@ class VolunteersList extends StatelessWidget{
             );
           },
         ),
+      );
+    }
+    if(activeScreenName == 'assign-to'){
+      return ListView.builder(
+        itemCount: volunteersList.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => //VolunteerCard(volunteersList[index])
+          ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(donationToAssig: donationToAssign, volunteersList[index], activeScreen: activeScreenName, openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,)),
       );
     }
 
