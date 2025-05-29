@@ -9,6 +9,7 @@ class DonorScreen extends StatelessWidget{
   final Function openAssignTo;
   final Function reserve;
   final Function isCollected;
+  //final Widget upBar; 
 
   final VoidCallback openAddDonationOverlay;
   //final Function addNewDonation;
@@ -19,7 +20,7 @@ class DonorScreen extends StatelessWidget{
   const DonorScreen(
     //this.changeScreen, this.openAddDonationOverlay, 
   //this.addNewDonation, this.deleteDonation, 
-      {required this.changeScreen, required this.openAddDonationOverlay, required this.deleteDonation, required this.registeredDonationsList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected}
+      {required this.changeScreen, required this.openAddDonationOverlay, required this.deleteDonation, required this.registeredDonationsList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected,}
   );
 
   @override
@@ -41,21 +42,24 @@ class DonorScreen extends StatelessWidget{
       mainContent = DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'donor-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,);
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Donate Now"),
-        backgroundColor: const Color.fromARGB(255, 208, 183, 134),
-        foregroundColor: const Color.fromARGB(255, 27, 136, 134),
-        actions: [
-          IconButton(
-            onPressed: openAddDonationOverlay,
-            icon: Icon(Icons.add),
-          ),
-        ],
-      ),
-      backgroundColor: Colors.white,
+    return //Scaffold(
+      // appBar: AppBar(
+      //   title: Text("Donate Now"),
+      //   backgroundColor: const Color.fromARGB(255, 208, 183, 134),
+      //   foregroundColor: const Color.fromARGB(255, 27, 136, 134),
+      //   actions: [
+      //     IconButton(
+      //       onPressed: openAddDonationOverlay,
+      //       icon: Icon(Icons.add),
+      //     ),
+      //   ],
+      // ),
+      // //appBar: upBar,
+      // backgroundColor: Colors.white,
       
-      body: Column(
+      //body: 
+      Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
 
           //Expanded(child: 
@@ -68,7 +72,7 @@ class DonorScreen extends StatelessWidget{
           ),
 
         ],
-      ),
+      //),
     );
   }
 }

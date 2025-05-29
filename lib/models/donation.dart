@@ -91,6 +91,27 @@ class Donation {
 
 }
 
-// Create a getter to create a map for every donation object.
-// This map is used to insert data into the database.
+// A new class that sums up all the expenses in one category to display them in the chart
+class DonationBucket {
+  const DonationBucket({required this.category, required this.donations});
+
+  // add an extra named constructor to filter out expenses that belong to a specific category
+  DonationBucket.forCategory(List<Donation> allDonations, this.category)
+      : donations = allDonations
+            .where((donation) => donation.category == category)
+            .toList();
+
+  final Category category;
+  final List<Donation> donations;
+
+  double get totalDonations {
+    double sum = 0;
+    for (Donation d in donations) {
+      if(d.amount != null ) {
+        sum += d.amount!;
+      }
+    }
+    return sum;
+  }
+}
 

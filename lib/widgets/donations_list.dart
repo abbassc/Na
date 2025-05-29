@@ -21,11 +21,6 @@ class DonationsList extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
 
-    print('DonationsList part: $part');
-print('volunteerLogged: $volunteerLogged');
-print('Total donations received: ${donationsList.length}');
-
-
     List<Donation> availableDonationsList = donationsList.where((donation) => !donation.isAssigned).toList();
     List<Donation> assignedTOVolunteerDonationsList = donationsList.where((donation) => donation.isAssigned && donation.volunteerAssigned?.id == volunteerLogged?.id && !donation.isCollected).toList();
     List<Donation> completedByVolunteerDonationsList = donationsList.where((donation) => donation.isCollected && donation.volunteerAssigned?.id == volunteerLogged?.id).toList();

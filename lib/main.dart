@@ -33,7 +33,22 @@ class MainApp extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-        return MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        //colorScheme: ColorScheme(brightness: brightness, primary: primary, onPrimary: onPrimary, secondary: secondary, onSecondary: onSecondary, error: error, onError: onError, surface: surface, onSurface: onSurface),
+        //colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(a, r, g, b), brightness: ,),
+        //floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: colorScheme.tertiary, foregroundColor: colorScheme.onTertiary,),
+        textTheme: TextTheme(
+          displayLarge: TextStyle( fontSize: 72, fontWeight: FontWeight.bold,),
+          //titleLarge: GoogleFonts.oswald(fontSize: 30, fontStyle: FontStyle.italic,),
+          //bodyMedium: GoogleFonts.merriweather(),
+          //displaySmall: GoogleFonts.pacifico(),
+          ), 
+        ),
+      
+      //home: AdminTabsScreen(registeredDonationsList: registeredDonations, registeredVolunteersList: registeredVolunteers),
+
+
       home: NahejAliApp(registeredDonationsList: registeredDonations, registeredVolunteersList: registeredVolunteers),
       debugShowCheckedModeBanner: false,
     );

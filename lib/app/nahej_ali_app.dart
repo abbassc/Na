@@ -3,11 +3,14 @@ import 'package:nahej_ali/db/nahejAli_storage.dart';
 import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
 import 'package:nahej_ali/screens/admin_screen.dart';
+import 'package:nahej_ali/screens/chart.dart';
 import 'package:nahej_ali/screens/donor_screen.dart';
+import 'package:nahej_ali/screens/filters.dart';
 import 'package:nahej_ali/screens/home_screen.dart';
 import 'package:nahej_ali/screens/volunteer_login.dart';
 import 'package:nahej_ali/screens/volunteer_screen.dart';
 import 'package:nahej_ali/widgets/assign_to.dart';
+import 'package:nahej_ali/widgets/main_drawer.dart';
 import 'package:nahej_ali/widgets/new_donation.dart';
 import 'package:nahej_ali/widgets/new_volunteer.dart';
 
@@ -28,6 +31,75 @@ class _NahejAliAppState extends State<NahejAliApp>{
   late Volunteer loggedVolunteer;
 
   String activeScreenName = 'home-screen';
+
+  int _selecteAdmindIndex = 0;
+  int _selecteVolunteerdIndex = 0;
+
+  Map<Category, bool> _selectedFilters = {
+    Category.Money: true,
+    Category.Food: true,
+    Category.Clothes: true,
+  };
+
+  
+
+  void _openFiltersScreen() async {
+    Navigator.pop(context);
+    final result = await Navigator.push<Map<Category, bool>>(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => FiltersScreen(
+          currentFilters: _selectedFilters,
+        ),
+      ),
+    );
+    setState(() {
+      _selectedFilters = result ??
+          {
+            Category.Money: true,
+            Category.Food: true,
+            Category.Clothes: true,
+          };
+    });
+  }
+
+  void _openThemesScreen() async {
+    Navigator.pop(context);
+    final result = await Navigator.push<Map<Category, bool>>(
+      context,
+      MaterialPageRoute(
+        builder: (ctx) => FiltersScreen(
+          currentFilters: _selectedFilters,
+        ),
+      ),
+    );
+    setState(() {
+      _selectedFilters = result ??
+          {
+            Category.Money: true,
+            Category.Food: true,
+            Category.Clothes: true,
+          };
+    });
+  }
+
+  void _selectAdminPart(int index) {
+    setState(() {
+      _selecteAdmindIndex = index;
+    });
+  }
+
+  void _selectVolunteerPart(int index) {
+    setState(() {
+      _selecteVolunteerdIndex = index;
+    });
+  }
+
+
+
+
+
+
 
   void changeScreen(String screenName, {Volunteer? volunteer}){
     activeScreenName = screenName;
@@ -52,10 +124,26 @@ class _NahejAliAppState extends State<NahejAliApp>{
   void _assignTo(Donation donation, Volunteer volunteer) async {
     donation.volunteerAssigned = volunteer;
     donation.assign();
-    setState(() {
-      
-    });
+    setState(() {});
     updateDonation(donation: donation, isAssigned: true, volunteerAssigned: volunteer, isCollected: false, /*isCollected: false*/);
+    if(activeScreenName == 'admin-screen'){
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Donation assigned successfuly'),
+          content: Text('"${donation.title}" is assigned to "${volunteer.name}".'),
+        ),
+      );
+    }
+    else{
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Donation reserved successfuly'),
+          content: Text('"${donation.title}" is added to your tasks "${volunteer.name}".'),
+        ),
+      );
+    }
   }
 
   void _isCollected(Donation donation, Volunteer collectorVolunteer) async {
@@ -174,45 +262,214 @@ class _NahejAliAppState extends State<NahejAliApp>{
   Widget build(BuildContext context) {
 
     Widget activeScreen = HomeScreen(changeScreen);
+    Widget activeDrawer = Text("NO Drawer");//SizedBox(height: 0, width: 0,);
+    Widget activeBottomNavigationBar = Text("NO Navigation Bar");//SizedBox(height: 0, width: 0,);
+    var activeAppBar = AppBar(
+         foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+         backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+         title: Text("Nahej Ali", style: TextStyle(fontWeight: FontWeight.bold),),
+         /*actions: [
+           IconButton(
+             onPressed: () {},
+             icon: Icon(Icons.add),
+           ),
+         ],*/
+       );
 
     if(activeScreenName == 'assign-to'){
       activeScreenName = 'admin-screen';
     }
 
     if (activeScreenName == 'admin-screen') {
-      activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected,);
-       //_addNewVolunteer, _deleteVolunteer
+      activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Volunteers',);
+      //activeScreen = AdminTabsScreen(registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, changeScreen: changeScreen, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, openAddVolunteerOverlay: _openAddDonationOverlay, deleteVolunteer: _deleteVolunteer, deleteDonation: _deleteDonation, selecteAdmindIndex: _selecteAdmindIndex, );
+      activeAppBar = AppBar(
+        foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+        backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+        title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
+        actions: [
+          IconButton(
+            onPressed: _openAddVolunteerOverlay,
+            icon: Icon(Icons.add),
+          ),
+        ],
+      );
+      activeDrawer = MainDrawer(
+        onFiltersTap: _openFiltersScreen, 
+        onThemesTap: _openThemesScreen,
+      );
+      activeBottomNavigationBar = BottomNavigationBar(
+        fixedColor: const Color.fromARGB(255, 208, 183, 134),
+        backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+        //selectedItemColor: ,
+        unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.payments),
+            label: 'Volunteers',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.leaderboard),
+            label: 'Donations',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.payments),
+            label: 'Collected',
+          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(Icons.leaderboard),
+          //   label: 'Chart',
+          // ),
+        ],
+        onTap: _selectAdminPart,
+        currentIndex: _selecteAdmindIndex,
+      );
+
+      if (_selecteAdmindIndex == 1) {
+        activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Donations',);
+        activeAppBar = AppBar(
+          foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+          backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+          title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
+          actions: [
+            // IconButton(
+            //   onPressed: _openAddVolunteerOverlay,
+            //   icon: Icon(Icons.add),
+            // ),
+          ],
+        );
+      }
+      if (_selecteAdmindIndex == 2) {
+        activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Collected',);
+          activeAppBar = AppBar(
+          foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+          backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+          title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
+          // actions: [
+          //   IconButton(
+          //     onPressed: _openAddVolunteerOverlay,
+          //     icon: Icon(Icons.add),
+          //   ),
+          // ],
+        );
+      }
+      if (_selecteAdmindIndex == 3) {
+        activeScreen = ChartScreen(donationsList: widget.registeredDonationsList,);
+        activeAppBar = AppBar(
+          foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+          backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+          title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
+          // actions: [
+          //   IconButton(
+          //     onPressed: _openAddVolunteerOverlay,
+          //     icon: Icon(Icons.add),
+          //   ),
+          // ],
+        );
+      }
     }
     
     else if (activeScreenName == 'volunteer-login') {
       activeScreen = VolunteerLogin(changeScreen, registeredVolunteersList: widget.registeredVolunteersList, registeredDonationsList: widget.registeredDonationsList, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, openAddVolunteerOverlay: _openAddVolunteerOverlay, deleteVolunteer: _deleteVolunteer,);
+      activeAppBar = AppBar(
+        foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+        backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+        title: Text("Nahej Ali - Volunteer Login", style: TextStyle(fontWeight: FontWeight.bold),),
+        actions: [
+          // IconButton(
+          //   onPressed: _openAddVolunteerOverlay,
+          //   icon: Icon(Icons.add),
+          // ),
+        ],
+      );
+      activeDrawer = MainDrawer(
+        onFiltersTap: _openFiltersScreen, 
+        onThemesTap: _openThemesScreen,
+      );
     }
 
     else if (activeScreenName == 'volunteer-screen') {
-      activeScreen = VolunteerScreen(volunteerLogged: loggedVolunteer, changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected,);
+      activeScreen = VolunteerScreen(volunteerLogged: loggedVolunteer, changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Tasks',);
+      activeAppBar = AppBar(
+        foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+        backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+        title: Text("Nahej Ali - Volunteer", style: TextStyle(fontWeight: FontWeight.bold),),
+        actions: [
+          // IconButton(
+          //   onPressed: _openAddVolunteerOverlay,
+          //   icon: Icon(Icons.add),
+          // ),
+        ],
+      );
+      activeDrawer = MainDrawer(
+        onFiltersTap: _openFiltersScreen,
+        onThemesTap: _openThemesScreen,
+      );
+      activeBottomNavigationBar = BottomNavigationBar(
+        fixedColor: const Color.fromARGB(255, 208, 183, 134),
+        backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+        //selectedItemColor: Colors.red,
+        unselectedItemColor: const Color.fromARGB(255, 224, 224, 224),
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.payments),
+            label: 'Tasks',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.leaderboard),
+            label: 'Available',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.payments),
+            label: 'Archive',
+          ),
+        ],
+        onTap: _selectVolunteerPart,
+        currentIndex: _selecteVolunteerdIndex,
+      );
+
+      if (_selecteVolunteerdIndex == 1) {
+      activeScreen = VolunteerScreen(volunteerLogged: loggedVolunteer, changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Available',);
+      }
+      if (_selecteVolunteerdIndex == 2) {
+      activeScreen = VolunteerScreen(volunteerLogged: loggedVolunteer, changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Archive',);
+      }
     }
 
     else if (activeScreenName == 'donor-screen') {
       activeScreen = DonorScreen(changeScreen: changeScreen, openAddDonationOverlay: _openAddDonationOverlay, registeredDonationsList: widget.registeredDonationsList, deleteDonation: _deleteDonation, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected,);
-      //DonorScreen(changeScreen, _openAddDonationOverlay, 
-      //_addNewDonation, _deleteDonation);
-    }
-
-    return Scaffold(
-      appBar: AppBar(
-        foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-        backgroundColor: const Color.fromARGB(255, 27, 136, 134),
-        title: Text("Nahej Ali", style: TextStyle(fontWeight: FontWeight.bold),),
-        /*actions: [
+      activeAppBar = AppBar(
+        backgroundColor: const Color.fromARGB(255, 208, 183, 134),
+        foregroundColor: const Color.fromARGB(255, 27, 136, 134),
+        title: Text("Donate Now", style: TextStyle(fontWeight: FontWeight.bold),),
+        actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: _openAddDonationOverlay,
             icon: Icon(Icons.add),
           ),
-        ],*/
-      ),
-      backgroundColor: Colors.white,
-      body: activeScreen
+        ],
       );
+    }
+
+    return 
+     Scaffold(
+      appBar: activeAppBar,
+    //AppBar(
+    //   //   foregroundColor: const Color.fromARGB(255, 208, 183, 134),
+    //   //   backgroundColor: const Color.fromARGB(255, 27, 136, 134),
+    //   //   title: Text("Nahej Ali", style: TextStyle(fontWeight: FontWeight.bold),),
+    //   //   /*actions: [
+    //   //     IconButton(
+    //   //       onPressed: () {},
+    //   //       icon: Icon(Icons.add),
+    //   //     ),
+    //   //   ],*/
+    //   // ),   
+       body: activeScreen,
+       backgroundColor: Colors.white,
+       drawer: activeDrawer,
+       bottomNavigationBar: activeBottomNavigationBar,
+     );
     
   }
 }

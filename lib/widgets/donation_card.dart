@@ -90,8 +90,17 @@ class DonationCard extends StatelessWidget{
     if (donation.isAssigned && activeScreenName == 'admin-screen') {
       if (donation.volunteerAssigned != null){
         button = Container(color: Colors.orangeAccent,child: Text(donation.volunteerAssigned!.name, style: TextStyle(fontWeight: FontWeight.bold),), );
-        if(donation.isCollected){ button = Container(color: Colors.greenAccent,child: Text(donation.volunteerAssigned!.name, style: TextStyle(fontWeight: FontWeight.bold),), );}
+        if(donation.isCollected){ 
+          button = Container(color: Colors.greenAccent,child: Text(donation.volunteerAssigned!.name, style: TextStyle(fontWeight: FontWeight.bold),), );
         }
+      }
+      else{
+        button = ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 27, 136, 134), foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
+              onPressed: (){openAssignTo(donation);}, 
+              child: Text('Assign to')
+            );
+      }
 
       card =  Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
