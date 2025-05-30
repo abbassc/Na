@@ -173,11 +173,13 @@ class NahejAliThemeConfig {
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.primary1, surfaceTintColor: NahejAliColors.primary1, foregroundColor: NahejAliColors.secondary1, side: BorderSide(color: NahejAliColors.primary1), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary1, surfaceTintColor: Color.fromARGB(255, 204, 136, 1), foregroundColor: NahejAliColors.primary1),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.primary1)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary1, surfaceTintColor: Color.fromARGB(255, 204, 136, 1), foregroundColor: NahejAliColors.primary1),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary1, backgroundColor: NahejAliColors.primary1,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary1, backgroundColor: NahejAliColors.primary1, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary1,),
+      scaffoldBackgroundColor: Colors.white,
     );
 
   static ThemeData darkOriginalTheme = ThemeData(
@@ -192,20 +194,22 @@ class NahejAliThemeConfig {
 
       /////////////////////////////////////////////////////////////////////////////
       textTheme: TextTheme(
-        displayLarge: TextStyle( fontSize: 72, fontWeight: FontWeight.bold,),
-        titleLarge: GoogleFonts.oswald(fontSize: 30, fontStyle: FontStyle.italic,),
-        bodyMedium: GoogleFonts.merriweather(),
-        displaySmall: GoogleFonts.pacifico(),
+        displayLarge: TextStyle( fontSize: 72, fontWeight: FontWeight.bold, /*color: colorScheme.onSurface*/),
+        titleLarge: GoogleFonts.oswald(fontSize: 30, fontStyle: FontStyle.italic, /*color: colorScheme.onSurface*/),
+        bodyMedium: GoogleFonts.merriweather(color: Colors.white),
+        displaySmall: GoogleFonts.pacifico(color: Colors.white),
         ), 
       ///////////////////////////////////////////////////////////////////////////////
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.secondary1, surfaceTintColor: NahejAliColors.secondary1, foregroundColor: NahejAliColors.primary1, side: BorderSide(color: NahejAliColors.secondary1), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary1, surfaceTintColor: const Color.fromARGB(255, 0, 180, 177), foregroundColor: NahejAliColors.secondary1),),
-      appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary1, backgroundColor: NahejAliColors.secondary1,),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary1, backgroundColor: NahejAliColors.secondary1, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.secondary1)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary1, surfaceTintColor: const Color.fromARGB(255, 0, 180, 177), foregroundColor: NahejAliColors.secondary1),),
+      appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary1, backgroundColor: const Color.fromARGB(255, 156, 138, 101),),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary1, backgroundColor: const Color.fromARGB(255, 156, 138, 101), unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary1,),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 50, 75, 75),
     );
 
 
@@ -230,11 +234,13 @@ class NahejAliThemeConfig {
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.primary2, surfaceTintColor: NahejAliColors.primary2, foregroundColor: NahejAliColors.secondary2, side: BorderSide(color: NahejAliColors.primary2), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary2, surfaceTintColor: const Color.fromARGB(255, 230, 28, 1), foregroundColor: NahejAliColors.primary2),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.primary2)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary2, surfaceTintColor: const Color.fromARGB(255, 230, 28, 1), foregroundColor: NahejAliColors.primary2,),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary2, backgroundColor: NahejAliColors.primary2,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary2, backgroundColor: NahejAliColors.primary2, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary2,),
+      scaffoldBackgroundColor: Colors.white,
     );
 
   static ThemeData darkPalestineTheme = ThemeData(
@@ -251,18 +257,20 @@ class NahejAliThemeConfig {
       textTheme: TextTheme(
         displayLarge: TextStyle( fontSize: 72, fontWeight: FontWeight.bold,),
         titleLarge: GoogleFonts.oswald(fontSize: 30, fontStyle: FontStyle.italic,),
-        bodyMedium: GoogleFonts.merriweather(),
-        displaySmall: GoogleFonts.pacifico(),
+        bodyMedium: GoogleFonts.merriweather(color: Colors.white),
+        displaySmall: GoogleFonts.pacifico(color: Colors.white),
         ), 
       ///////////////////////////////////////////////////////////////////////////////
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.secondary2, surfaceTintColor: NahejAliColors.secondary2, foregroundColor: NahejAliColors.primary2, side: BorderSide(color: NahejAliColors.secondary2), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary2, surfaceTintColor: const Color.fromARGB(255, 1, 127, 206), foregroundColor: NahejAliColors.secondary2),),
-      appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary2, backgroundColor: NahejAliColors.secondary2,),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary2, backgroundColor: NahejAliColors.secondary2, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.secondary2)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary2, surfaceTintColor: const Color.fromARGB(255, 1, 127, 206), foregroundColor: NahejAliColors.secondary2),),
+      appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary2, backgroundColor: const Color.fromARGB(255, 172, 112, 104),),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary2, backgroundColor: const Color.fromARGB(255, 172, 112, 104), unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary2,),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 78, 85, 89),
     );
 
 
@@ -287,11 +295,13 @@ class NahejAliThemeConfig {
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.primary3, surfaceTintColor: NahejAliColors.primary3, foregroundColor: NahejAliColors.secondary3, side: BorderSide(color: NahejAliColors.primary3), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary3, surfaceTintColor: const Color.fromARGB(255, 147, 180, 2), foregroundColor: NahejAliColors.primary3),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.primary3)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary3, surfaceTintColor: const Color.fromARGB(255, 147, 180, 2), foregroundColor: NahejAliColors.primary3),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary3, backgroundColor: NahejAliColors.primary3,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary3, backgroundColor: NahejAliColors.primary3, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary3,),
+      scaffoldBackgroundColor: Colors.white,
     );
 
   static ThemeData darkRamadanTheme = ThemeData(
@@ -308,18 +318,20 @@ class NahejAliThemeConfig {
       textTheme: TextTheme(
         displayLarge: TextStyle( fontSize: 72, fontWeight: FontWeight.bold,),
         titleLarge: GoogleFonts.oswald(fontSize: 30, fontStyle: FontStyle.italic,),
-        bodyMedium: GoogleFonts.merriweather(),
-        displaySmall: GoogleFonts.pacifico(),
+        bodyMedium: GoogleFonts.merriweather(color: Colors.white),
+        displaySmall: GoogleFonts.pacifico(color: Colors.white),
         ), 
       ///////////////////////////////////////////////////////////////////////////////
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.secondary3, surfaceTintColor: NahejAliColors.secondary3, foregroundColor: NahejAliColors.primary3, side: BorderSide(color: NahejAliColors.secondary3), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary3, surfaceTintColor: const Color.fromARGB(255, 220, 22, 0), foregroundColor: NahejAliColors.secondary3),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.secondary3)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary3, surfaceTintColor: const Color.fromARGB(255, 220, 22, 0), foregroundColor: NahejAliColors.secondary3),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary3, backgroundColor: NahejAliColors.secondary3,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary3, backgroundColor: NahejAliColors.secondary3, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary3,),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 95, 82, 80),
     );
 
 
@@ -344,11 +356,13 @@ class NahejAliThemeConfig {
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.primary4, surfaceTintColor: NahejAliColors.primary4, foregroundColor: NahejAliColors.secondary42, side: BorderSide(color: NahejAliColors.primary4), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary4, surfaceTintColor: NahejAliColors.secondary42, foregroundColor: NahejAliColors.primary4),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.primary4)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary4, surfaceTintColor: NahejAliColors.secondary42, foregroundColor: NahejAliColors.primary4),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary42, backgroundColor: NahejAliColors.primary4,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary42, backgroundColor: Colors.black, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary42,),
+      scaffoldBackgroundColor: Colors.white,
     );
 
   static ThemeData darkAshuraTheme = ThemeData(
@@ -365,18 +379,20 @@ class NahejAliThemeConfig {
       textTheme: TextTheme(
         displayLarge: TextStyle( fontSize: 72, fontWeight: FontWeight.bold,),
         titleLarge: GoogleFonts.oswald(fontSize: 30, fontStyle: FontStyle.italic,),
-        bodyMedium: GoogleFonts.merriweather(),
-        displaySmall: GoogleFonts.pacifico(),
+        bodyMedium: GoogleFonts.merriweather(color: Colors.white),
+        displaySmall: GoogleFonts.pacifico(color: Colors.white),
         ), 
       ///////////////////////////////////////////////////////////////////////////////
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.secondary41, surfaceTintColor: NahejAliColors.secondary42, foregroundColor: NahejAliColors.primary4, side: BorderSide(color: NahejAliColors.secondary41), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary41, surfaceTintColor: NahejAliColors.primary4, foregroundColor: NahejAliColors.secondary41),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.secondary42)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary41, surfaceTintColor: NahejAliColors.primary4, foregroundColor: NahejAliColors.secondary41),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary4, backgroundColor: NahejAliColors.secondary41,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary4, backgroundColor: NahejAliColors.secondary41, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary4,),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 74, 57, 57),
     );
 
   
@@ -401,11 +417,13 @@ class NahejAliThemeConfig {
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.primary55, surfaceTintColor: NahejAliColors.primary55, foregroundColor: NahejAliColors.secondary55, side: BorderSide(color: NahejAliColors.primary55), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary55, surfaceTintColor: const Color.fromARGB(255, 212, 135, 2), foregroundColor: NahejAliColors.primary55),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.primary55)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary55, surfaceTintColor: const Color.fromARGB(255, 212, 135, 2), foregroundColor: NahejAliColors.primary55),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary55, backgroundColor: NahejAliColors.primary55,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary55, backgroundColor: NahejAliColors.primary55, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary55,),
+      scaffoldBackgroundColor: Colors.white,
     );
 
   static ThemeData darkEidTheme = ThemeData(
@@ -422,18 +440,20 @@ class NahejAliThemeConfig {
       textTheme: TextTheme(
         displayLarge: TextStyle( fontSize: 72, fontWeight: FontWeight.bold,),
         titleLarge: GoogleFonts.oswald(fontSize: 30, fontStyle: FontStyle.italic,),
-        bodyMedium: GoogleFonts.merriweather(),
-        displaySmall: GoogleFonts.pacifico(),
+        bodyMedium: GoogleFonts.merriweather(color: Colors.white),
+        displaySmall: GoogleFonts.pacifico(color: Colors.white),
         ), 
       ///////////////////////////////////////////////////////////////////////////////
 
 
       elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: NahejAliColors.secondary55, surfaceTintColor: NahejAliColors.secondary55, foregroundColor: NahejAliColors.primary55, side: BorderSide(color: NahejAliColors.secondary55), ),),
-      iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary55, surfaceTintColor: const Color.fromARGB(255, 179, 0, 158), foregroundColor: NahejAliColors.secondary55),),
-      appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary55, backgroundColor: NahejAliColors.secondary55,),
-      bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary55, backgroundColor: NahejAliColors.secondary55, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
+      iconButtonTheme: IconButtonThemeData(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(NahejAliColors.secondary55)),),
+      //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary55, surfaceTintColor: const Color.fromARGB(255, 179, 0, 158), foregroundColor: NahejAliColors.secondary55),),
+      appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary55, backgroundColor: const Color.fromARGB(255, 152, 132, 98),),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary55, backgroundColor: const Color.fromARGB(255, 152, 132, 98), unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
       //drawerTheme: DrawerThemeData(),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary55,),
+      scaffoldBackgroundColor: const Color.fromARGB(255, 75, 62, 74),
     );
 
 

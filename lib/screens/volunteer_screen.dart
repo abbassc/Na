@@ -67,7 +67,9 @@ class VolunteerScreen extends StatelessWidget{
               ]
             ),
 
-          IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
+          IconButton.filled(//style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), 
+                  hoverColor: Theme.of(context).colorScheme.secondary,  
+                onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
         ]
       );
     }
@@ -110,7 +112,10 @@ class VolunteerScreen extends StatelessWidget{
             ]
           ),
 
-        IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
+        IconButton.filled(//style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), 
+                      hoverColor: Theme.of(context).colorScheme.secondary, 
+                      onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),
+                      ),
 
         ]
       );
@@ -154,102 +159,15 @@ class VolunteerScreen extends StatelessWidget{
             ]
           ),
 
-          IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
+          IconButton.filled(
+            //style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), 
+            hoverColor: Theme.of(context).colorScheme.secondary, 
+            onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),
+            ),
 
         ],
       );
     }
-
-    // return Center(
-    //   child: Stack(
-    //     alignment: AlignmentDirectional.bottomCenter,
-    //     children: [
-    //         SingleChildScrollView(
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.start,
-    //           spacing: 0,
-    //           children: [
-                  
-    //             Padding(
-    //               padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
-    //               child: Row(
-    //                 spacing: 80,
-    //                 children: [
-    //                   Text('Tasks: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.black),),          
-    //                 ],
-    //               ),
-    //             ),
-                  
-    //             Padding(
-    //               padding: const EdgeInsets.all(8.0),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   SizedBox(
-    //                     width: 300,
-    //                     height: 200,
-    //                     child: DonationsList(part: 'tasks', volunteerLogged: volunteerLogged, donationsList: registeredDonationsList, onDeleteDonation: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-                  
-    //             Padding(
-    //               padding: const EdgeInsets.only(left: 8, right: 8,),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   Text('Available Donations: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-    //                 ],
-    //               ),
-    //             ),
-                  
-    //             Padding(
-    //               padding: const EdgeInsets.all(8.0),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   SizedBox(
-    //                     width: 300,
-    //                     height: 200,
-    //                     child: DonationsList(part: 'available', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-          
-    //             Padding(
-    //               padding: const EdgeInsets.only(left: 8, right: 8,),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   Text('Archive: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-    //                 ],
-    //               ),
-    //             ),
-                  
-    //             Padding(
-    //               padding: const EdgeInsets.all(8.0),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   SizedBox(
-    //                     width: 300,
-    //                     height: 200,
-    //                     child: DonationsList(part: 'archive', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-                  
-    //           ],
-    //         ),
-    //       ),
-    
-           //IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
-    //     ]
-    //   ),
-    // );
     return Text("Enter Partttt");
   }
 

@@ -77,78 +77,81 @@ class _NewVolunteerState extends State<NewVolunteer> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-
-          TextField(
-            //onChanged: _saveVolunteerName,
-            controller: _nameController,
-            maxLength: 50,
-            decoration: InputDecoration(
-              label: Text("Volunteer name"),
-            ),
-          ),
-          
-          TextField(
-            //onChanged: _saveVolunteerName,
-            controller: _phoneController,
-            keyboardType: TextInputType.number,
-            maxLength: 13,
-            decoration: InputDecoration(
-              label: Text("Phone"),
-            ),
-            inputFormatters: <TextInputFormatter>[
-             FilteringTextInputFormatter.digitsOnly
-            ]
-          ),
-
-          TextField(
-            //onChanged: _saveVolunteerName,
-            controller: _locationController,
-            maxLength: 200,
-            decoration: InputDecoration(
-              label: Text("Location"),
-            ),
-          ),
-
-          TextField(
-            //onChanged: _saveVolunteerName,
-            controller: _availabilityController,
-            maxLength: 200,
-            decoration: InputDecoration(
-              label: Text("Availability"),
-            ),
-          ),
-
-          SizedBox(height: 16),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              //DropdownButton(
-                //  value: _selectedCategory,
-                  //items: List.empty(),
-              //),
-
-              Spacer(),
-
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Cancel'),
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+      
+            TextField(
+              //onChanged: _saveVolunteerName,
+              controller: _nameController,
+              maxLength: 50,
+              decoration: InputDecoration(
+                label: Text("Volunteer name"),
               ),
-
-              ElevatedButton(
-                onPressed: _submitVolunteerForm,
-                child: Text('Save Volunteer'),
+            ),
+            
+            TextField(
+              //onChanged: _saveVolunteerName,
+              controller: _phoneController,
+              keyboardType: TextInputType.number,
+              maxLength: 13,
+              decoration: InputDecoration(
+                label: Text("Phone"),
               ),
-
-            ],
-          )
-        ],
+              inputFormatters: <TextInputFormatter>[
+               FilteringTextInputFormatter.digitsOnly
+              ]
+            ),
+      
+            TextField(
+              //onChanged: _saveVolunteerName,
+              controller: _locationController,
+              maxLength: 200,
+              decoration: InputDecoration(
+                label: Text("Location"),
+              ),
+            ),
+      
+            TextField(
+              //onChanged: _saveVolunteerName,
+              controller: _availabilityController,
+              maxLength: 200,
+              decoration: InputDecoration(
+                label: Text("Availability"),
+              ),
+            ),
+      
+            SizedBox(height: 16),
+      
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                //DropdownButton(
+                  //  value: _selectedCategory,
+                    //items: List.empty(),
+                //),
+      
+                Spacer(),
+      
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+      
+                ElevatedButton(
+                  onPressed: _submitVolunteerForm,
+                  child: Text('Save Volunteer'),
+                ),
+      
+              ],
+            )
+          ],
+        ),
       ),
     );
   }

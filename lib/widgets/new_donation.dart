@@ -107,157 +107,160 @@ class _NewDonationState extends State<NewDonation> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          TextField(
-            //onChanged: _saveDonationTitle,
-            controller: _titleController,
-            maxLength: 50,
-            decoration: InputDecoration(
-              label: Text("Donation Title"),
-            ),
-          ),
-          TextField(
-            //onChanged: _saveDonationLocation,
-            controller: _phoneController,
-            maxLength: 13,
-            decoration: InputDecoration(
-              label: Text("Phone Number"),
-            ),
-          ),
-          TextField(
-            //onChanged: _saveDonationLocation,
-            controller: _locationController,
-            maxLength: 200,
-            decoration: InputDecoration(
-              label: Text("Location"),
-            ),
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  controller: _amountController,
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    label: Text("Amount"),
-                    prefixText: '\$ ',
-                  ),
-                ),
+    return Container(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            TextField(
+              //onChanged: _saveDonationTitle,
+              controller: _titleController,
+              maxLength: 50,
+              decoration: InputDecoration(
+                label: Text("Donation Title"),
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      _selectedDate == null
-                          ? 'No Date Selected'
-                          : DateFormat.yMd().format(_selectedDate!),
+            ),
+            TextField(
+              //onChanged: _saveDonationLocation,
+              controller: _phoneController,
+              maxLength: 13,
+              decoration: InputDecoration(
+                label: Text("Phone Number"),
+              ),
+            ),
+            TextField(
+              //onChanged: _saveDonationLocation,
+              controller: _locationController,
+              maxLength: 200,
+              decoration: InputDecoration(
+                label: Text("Location"),
+              ),
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _amountController,
+                    keyboardType: TextInputType.number,
+                    decoration: InputDecoration(
+                      label: Text("Amount"),
+                      prefixText: '\$ ',
                     ),
-                    IconButton(
-                      onPressed: _showDatePicker,
-                      icon: Icon(Icons.calendar_month),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-          //SizedBox(height: 16),
-          Row(
-            children: [
-              Expanded(
-                child: TextField(
-                  //onChanged: _saveDonationTime,
-                  controller: _timeController,
-                  maxLength: 10,
-                  decoration: InputDecoration(
-                    label: Text("Time"),
                   ),
                 ),
-              ),
-              Spacer(),
-              DropdownButton(
-                  value: _selectedCategory,
-                  items: Category.values
-                      .map(
-                        (category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(category.name.toUpperCase())),
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        _selectedDate == null
+                            ? 'No Date Selected'
+                            : DateFormat.yMd().format(_selectedDate!),
+                      ),
+                      IconButton(
+                        onPressed: _showDatePicker,
+                        icon: Icon(Icons.calendar_month),
                       )
-                      .toList(),
-                  onChanged: (value) {
-                    if (value == null) {
-                      return;
-                    }
-                    setState(() {
-                      _selectedCategory = value;
-                    });
-                  }
+                    ],
+                  ),
                 ),
-            ],
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: CheckboxListTile(title: Text('Donation needs car?'), 
-                  value: needsCar, 
-                  onChanged: (ischecked){
-                    setState(
-                      () {
-                        needsCar = ischecked ?? false;
+              ],
+            ),
+            //SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    //onChanged: _saveDonationTime,
+                    controller: _timeController,
+                    maxLength: 10,
+                    decoration: InputDecoration(
+                      label: Text("Time"),
+                    ),
+                  ),
+                ),
+                Spacer(),
+                DropdownButton(
+                    value: _selectedCategory,
+                    items: Category.values
+                        .map(
+                          (category) => DropdownMenuItem(
+                              value: category,
+                              child: Text(category.name.toUpperCase())),
+                        )
+                        .toList(),
+                    onChanged: (value) {
+                      if (value == null) {
+                        return;
                       }
-                    );
-                  }
-                )
-              ),
-            ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: _submitDonationForm,
-                child: Text('Save Donation'),
-              ),
-            ],
-          ),
-
-          // Column(
-          //   children: [
-          //     Text('Needs Car?'),
-          //      RadioListTile<bool>(
-          //       title: Text('yes'),
-          //       value: true,
-          //       groupValue: needsCar,
-          //       onChanged: (value) {
-          //         setState(() {
-          //           needsCar = value!;
-          //         });
-          //       },
-          //     ),
-          //     RadioListTile<bool>(
-          //       title: Text('no'),
-          //       value: false,
-          //       groupValue: needsCar,
-          //       onChanged: (value) {
-          //         setState(() {
-          //           needsCar = value!;
-          //         });
-          //       },
-          //     ),
-          //   ]
-          // ),
-          //RadioListTile(value: needsCar, groupValue: [true, false], onChanged: onChanged)
-        ],
+                      setState(() {
+                        _selectedCategory = value;
+                      });
+                    }
+                  ),
+              ],
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: CheckboxListTile(title: Text('Donation needs car?'), 
+                    value: needsCar, 
+                    onChanged: (ischecked){
+                      setState(
+                        () {
+                          needsCar = ischecked ?? false;
+                        }
+                      );
+                    }
+                  )
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+                ElevatedButton(
+                  onPressed: _submitDonationForm,
+                  child: Text('Save Donation'),
+                ),
+              ],
+            ),
+      
+            // Column(
+            //   children: [
+            //     Text('Needs Car?'),
+            //      RadioListTile<bool>(
+            //       title: Text('yes'),
+            //       value: true,
+            //       groupValue: needsCar,
+            //       onChanged: (value) {
+            //         setState(() {
+            //           needsCar = value!;
+            //         });
+            //       },
+            //     ),
+            //     RadioListTile<bool>(
+            //       title: Text('no'),
+            //       value: false,
+            //       groupValue: needsCar,
+            //       onChanged: (value) {
+            //         setState(() {
+            //           needsCar = value!;
+            //         });
+            //       },
+            //     ),
+            //   ]
+            // ),
+            //RadioListTile(value: needsCar, groupValue: [true, false], onChanged: onChanged)
+          ],
+        ),
       ),
     );
   }

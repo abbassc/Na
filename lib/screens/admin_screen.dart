@@ -63,7 +63,7 @@ class AdminScreen extends StatelessWidget{
                       //     height: 28,
                       //     child: 
                       Spacer(),
-                      ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: openAddVolunteerOverlay, child: Text('Add Volunteer')),
+                      ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Theme.of(context).colorScheme.secondary, side: BorderSide(color: Theme.of(context).primaryColor)), onPressed: openAddVolunteerOverlay, child: Text('Add Volunteer')),
                         // ),
                     ],
                   ),
@@ -88,7 +88,9 @@ class AdminScreen extends StatelessWidget{
               ],
             ),
           //),
-          IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
+          IconButton.filled(//style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), 
+           hoverColor: Theme.of(context).colorScheme.secondary, 
+          onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
         ],
       ),
     );
@@ -135,7 +137,9 @@ class AdminScreen extends StatelessWidget{
               ],
             ),
           //),
-          IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
+          IconButton.filled(//style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), 
+           hoverColor: Theme.of(context).colorScheme.secondary, 
+          onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
         ],
       ),
     );
@@ -183,118 +187,13 @@ class AdminScreen extends StatelessWidget{
               ],
             ),
           //),
-          IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
+          IconButton.filled(//style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), 
+           hoverColor: Theme.of(context).colorScheme.secondary, 
+          onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
         ],
       ),
     );
   }
-
-    // return Center(
-    //   child: Stack(
-    //     alignment: AlignmentDirectional.bottomCenter,
-    //     children: [
-    //       SingleChildScrollView(
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.start,
-    //           spacing: 0,
-    //           children: [
-
-
-            
-    //             Padding(
-    //               padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
-    //               child: Row(
-    //                 spacing: 80,
-    //                 children: [
-    //                   Text('Volunteers: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-    //                   //SizedBox(width: 80,),
-    //                   SizedBox(
-    //                       width: 141,
-    //                       height: 28,
-    //                       child: ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: openAddVolunteerOverlay, child: Text('Add Volunteer')),
-    //                     ),
-    //                 ],
-    //               ),
-    //             ),
-            
-    //             Padding(
-    //               padding: const EdgeInsets.all(8.0),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   SizedBox(
-    //                     width: 300,
-    //                     height: 200,
-    //                     child: VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-
-
-
-            
-    //             Padding(
-    //               padding: const EdgeInsets.only(left: 8, right: 8,),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   Text('Donations: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-    //                 ],
-    //               ),
-    //             ),
-            
-    //             Padding(
-    //               padding: const EdgeInsets.all(8.0),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   SizedBox(
-    //                     width: 300,
-    //                     height: 200,
-    //                     child: DonationsList(part: 'pending', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-
-
-
-
-    //             Padding(
-    //               padding: const EdgeInsets.only(left: 8, right: 8,),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   Text('Collected Donations: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-    //                 ],
-    //               ),
-    //             ),
-            
-    //             Padding(
-    //               padding: const EdgeInsets.all(8.0),
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.start,
-    //                 children: [
-    //                   SizedBox(
-    //                     width: 300,
-    //                     height: 200,
-    //                     child: DonationsList(part: 'collected', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,),
-    //                   ),
-    //                 ],
-    //               ),
-    //             ),
-
-
-
-    //           ],
-    //         ),
-    //       ),
-
-    //       IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
-    //     ]
-    //   ),
-    // );
 
     return Text('Select Part');
   }

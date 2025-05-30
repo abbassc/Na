@@ -1,51 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:nahej_ali/themes/nahej_ali_theme_data.dart';
+import 'package:provider/provider.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key, required this.onFiltersTap, required this.onThemesTap, required this.onModeTap});
+  const MainDrawer({super.key, required this.onFiltersTap, required this.onThemesTap, required this.onModeTap, required this.activeScreenName});
 
   final void Function() onFiltersTap;
   final void Function() onThemesTap;
   final void Function() onModeTap;
+  final String activeScreenName;
 
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          DrawerHeader(
-            padding: EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  const Color.fromARGB(167, 155, 39, 176),
-                  const Color.fromARGB(57, 155, 39, 176),
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.payments,
-                  size: 45,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Nahej ALi',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
+
+    final themeManager = Provider.of<ThemeManager>(context);
+    AssetImage logo = AssetImage('assets/images/temp-03.jpg');
+
+    if(Theme.of(context).brightness == Brightness.dark){
+      if(themeManager.currentTheme == AppThemeChoice.original){
+        logo = AssetImage('assets/images/temp-02.jpg');
+      }
+      else if(themeManager.currentTheme == AppThemeChoice.palestine){
+        logo = AssetImage('assets/images/temp-04.jpg');
+      }
+      else if(themeManager.currentTheme == AppThemeChoice.ramadan){
+        logo = AssetImage('assets/images/logoNA.png');
+      }
+      else if(themeManager.currentTheme == AppThemeChoice.ashura){
+        logo = AssetImage('assets/images/logoNA.png');
+      }
+      else {
+        logo = AssetImage('assets/images/logoNA.png');
+      }
+    }
+    else {
+      if(themeManager.currentTheme == AppThemeChoice.original){
+        logo = AssetImage('assets/images/temp-03.jpg');
+      }
+      else if(themeManager.currentTheme == AppThemeChoice.palestine){
+        logo = AssetImage('assets/images/temp-04.jpg');
+      }
+      else if(themeManager.currentTheme == AppThemeChoice.ramadan){
+        logo = AssetImage('assets/images/logoNA.png');
+      }
+      else if(themeManager.currentTheme == AppThemeChoice.ashura){
+        logo = AssetImage('assets/images/logoNA.png');
+      }
+      else {
+        logo = AssetImage('assets/images/logoNA.png');
+      }
+    }
+
+    Widget listTiles = Column(
+      children: [
+        
+          ListTile(
+            leading: Icon(Icons.color_lens),
+            title: Text('Themes'),
+            onTap: onThemesTap,
           ),
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: Icon(Icons.color_lens),
+            title: Text('Mode'),
+            onTap: onModeTap,
+          ),
+      ],
+    );
+
+    if(activeScreenName == 'admin-screen'){
+      listTiles = Column(
+        children: [
+          ListTile(
+            leading: Icon(Icons.color_lens),
             title: Text('Filters'),
             onTap: onFiltersTap,
           ),
@@ -59,6 +86,47 @@ class MainDrawer extends StatelessWidget {
             title: Text('Mode'),
             onTap: onModeTap,
           ),
+        ],
+      );
+    }
+
+
+    return Drawer(
+      child: Column(
+        children: [
+          DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo), 
+            //   gradient: LinearGradient(
+            //     colors: [
+            //       const Color.fromARGB(167, 155, 39, 176),
+            //       const Color.fromARGB(57, 155, 39, 176),
+            //     ],
+            //     begin: Alignment.topLeft,
+            //     end: Alignment.bottomRight,
+            //   ),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Icon(
+                //   Icons.payments,
+                //   size: 45,
+                // ),
+                SizedBox(height: 20),
+                // Text(
+                //   'Nahej ALi',
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.w600,
+                //   ),
+                // ),
+              ],
+             ),
+          ),
+          listTiles,
         ],
       ),
     );

@@ -30,15 +30,14 @@ class VolunteerCard extends StatelessWidget{
       return Card(
         //margin: EdgeInsets.only(),
         //semanticContainer: false,
-        shadowColor: Color.fromARGB(255, 208, 183, 134),
+        shadowColor: Theme.of(context).colorScheme.secondary,
         surfaceTintColor: Color.fromARGB(255, 255, 255, 255),
         //clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: const Color.fromARGB(204, 27, 136, 134),
-      
-
+        color: Theme.of(context).colorScheme.primary,
+        
         child: InkWell(
-          splashColor: const Color.fromARGB(255, 208, 183, 134),
+          splashColor: Theme.of(context).colorScheme.secondary,
         //const Color.fromARGB(255, 208, 183, 134),
         //const Color.fromARGB(255, 27, 136, 134),
           borderRadius: BorderRadius.circular(16),
@@ -85,15 +84,15 @@ class VolunteerCard extends StatelessWidget{
       return Card(
         //margin: EdgeInsets.only(),
         //semanticContainer: false,
-        shadowColor: const Color.fromARGB(204, 27, 136, 134),
+        shadowColor: Theme.of(context).primaryColor,
         surfaceTintColor: Color.fromARGB(255, 255, 255, 255),
         //clipBehavior: Clip.antiAlias,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        color: Color.fromARGB(255, 208, 183, 134),
+        color: Theme.of(context).colorScheme.secondary,
       
 
         child: InkWell(
-          splashColor: const Color.fromARGB(204, 27, 136, 134),
+          splashColor: Theme.of(context).primaryColor,
         //const Color.fromARGB(255, 208, 183, 134),
         //const Color.fromARGB(255, 27, 136, 134),
           borderRadius: BorderRadius.circular(16),
@@ -113,7 +112,7 @@ class VolunteerCard extends StatelessWidget{
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(volunteer.name, style: TextStyle(color: const Color.fromARGB(204, 27, 136, 134), fontWeight: FontWeight.bold, fontSize: 18)),
+              Text(volunteer.name, style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.bold, fontSize: 18)),
               Text('Location: ${volunteer.location}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
               Text('Availabilty: ${volunteer.availability}', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
 
@@ -142,17 +141,17 @@ class VolunteerCard extends StatelessWidget{
     return Card(
       //margin: EdgeInsets.only(),
       //semanticContainer: false,
-      shadowColor: Color.fromARGB(255, 208, 183, 134),
+      shadowColor: Theme.of(context).colorScheme.secondary,
       surfaceTintColor: Color.fromARGB(255, 255, 255, 255),
       //clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      color: const Color.fromARGB(204, 27, 136, 134),
+      color: Theme.of(context).colorScheme.primary,//Theme.of(context).primaryColor,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(volunteer.name, style: TextStyle(color: Color.fromARGB(255, 208, 183, 134), fontWeight: FontWeight.bold,fontSize: 16)),
+            Text(volunteer.name, style: TextStyle(color: Theme.of(context).colorScheme.secondary, fontWeight: FontWeight.bold,fontSize: 16)),
             Text(volunteer.location, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,)),
             Text('Availability: ${volunteer.availability}', style: TextStyle(fontWeight: FontWeight.bold,)),
             SizedBox(height: 4),

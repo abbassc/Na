@@ -68,7 +68,10 @@ class DonorScreen extends StatelessWidget{
 
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
-            child: IconButton.filled(style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), hoverColor: Color.fromARGB(255, 208, 183, 134), onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
+            child: IconButton.filled(
+              //style: ButtonStyle(backgroundColor: WidgetStateProperty.all<Color>(Color.fromARGB(255, 27, 136, 134)),), 
+              hoverColor: Theme.of(context).colorScheme.secondary, 
+              onPressed: (){changeScreen('home-screen');}, icon: Image.asset('assets/images/home.png', scale: 20,),),
           ),
 
         ],

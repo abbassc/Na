@@ -281,8 +281,8 @@ class _NahejAliAppState extends State<NahejAliApp>{
   Widget build(BuildContext context) {
 
     Widget activeScreen = HomeScreen(changeScreen);
-    Widget activeDrawer = Text("NO Drawer");//SizedBox(height: 0, width: 0,);
-    Widget activeBottomNavigationBar = Text("NO Navigation Bar");//SizedBox(height: 0, width: 0,);
+    Widget activeDrawer = Text("");//SizedBox(height: 0, width: 0,);
+    Widget activeBottomNavigationBar = Text("");//SizedBox(height: 0, width: 0,);
     var activeAppBar = AppBar(
         //  foregroundColor: const Color.fromARGB(255, 208, 183, 134),
         //  backgroundColor: const Color.fromARGB(255, 27, 136, 134),
@@ -294,6 +294,15 @@ class _NahejAliAppState extends State<NahejAliApp>{
            ),
          ],*/
        );
+
+    if(activeScreenName == 'home-screen'){
+      activeDrawer =  MainDrawer(
+        onFiltersTap: _openFiltersScreen, 
+        onThemesTap: (){_openThemeAdminScreen(context);}, 
+        onModeTap: (){_openModeScreen(context);}, 
+        activeScreenName: activeScreenName,
+      );
+    }
 
     if(activeScreenName == 'assign-to'){
       activeScreenName = 'admin-screen';
@@ -317,6 +326,7 @@ class _NahejAliAppState extends State<NahejAliApp>{
         onFiltersTap: _openFiltersScreen, 
         onThemesTap: (){_openThemeAdminScreen(context);}, 
         onModeTap: (){_openModeScreen(context);},
+        activeScreenName: activeScreenName,
       );
       activeBottomNavigationBar = BottomNavigationBar(
         // selectedItemColor: const Color.fromARGB(255, 208, 183, 134),
@@ -405,6 +415,7 @@ class _NahejAliAppState extends State<NahejAliApp>{
         onFiltersTap: _openFiltersScreen, 
         onThemesTap: (){_openThemeAdminScreen(context);}, 
         onModeTap: (){_openModeScreen(context);},
+        activeScreenName: activeScreenName,
       );
     }
 
@@ -425,6 +436,7 @@ class _NahejAliAppState extends State<NahejAliApp>{
         onFiltersTap: _openFiltersScreen,
         onThemesTap: (){_openThemeAdminScreen(context);}, 
         onModeTap: (){_openModeScreen(context);},
+        activeScreenName: activeScreenName,
       );
       activeBottomNavigationBar = BottomNavigationBar(
         // fixedColor: const Color.fromARGB(255, 208, 183, 134),
@@ -459,6 +471,12 @@ class _NahejAliAppState extends State<NahejAliApp>{
 
     else if (activeScreenName == 'donor-screen') {
       activeScreen = DonorScreen(changeScreen: changeScreen, openAddDonationOverlay: _openAddDonationOverlay, registeredDonationsList: widget.registeredDonationsList, deleteDonation: _deleteDonation, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected,);
+      activeDrawer = MainDrawer(
+        onFiltersTap: _openFiltersScreen,
+        onThemesTap: (){_openThemeAdminScreen(context);}, 
+        onModeTap: (){_openModeScreen(context);},
+        activeScreenName: activeScreenName,
+      );
       activeAppBar = AppBar(
         // backgroundColor: const Color.fromARGB(255, 208, 183, 134),
         // foregroundColor: const Color.fromARGB(255, 27, 136, 134),

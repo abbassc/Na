@@ -16,24 +16,36 @@ class HomeScreen extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           //crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+
             ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                //side: BorderSide(width: 1, color: const Color.fromARGB(255, 27, 136, 134))
-                shadowColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 204, 136, 1), foregroundColor: Color.fromARGB(255, 27, 136, 134)), 
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,//Theme.of(context).primaryColor, 
+              side: BorderSide(color: Theme.of(context).scaffoldBackgroundColor, width: 0),//Theme.of(context).primaryColor),
+                                            //side: BorderSide(width: 1, color: const Color.fromARGB(255, 27, 136, 134))
+                shadowColor: Theme.of(context).primaryColor, surfaceTintColor: Theme.of(context).secondaryHeaderColor, foregroundColor: Theme.of(context).primaryColor,), 
               onPressed: (){changeScreen('admin-screen');}, label: Text('Admin', style: TextStyle(
-                //color: Color.fromARGB(255, 208, 183, 134), 
+                                             //color: Color.fromARGB(255, 208, 183, 134), 
                 fontSize: 20),), icon: Image.asset('assets/images/admin.png', scale: 12,),),
+
             
             ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                shadowColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 204, 136, 1), foregroundColor: Color.fromARGB(255, 27, 136, 134)), 
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,//Theme.of(context).primaryColor, 
+              side: BorderSide(color: Theme.of(context).scaffoldBackgroundColor, width: 0),//Theme.of(context).primaryColor),
+                                            //side: BorderSide(width: 1, color: const Color.fromARGB(255, 27, 136, 134))
+                shadowColor: Theme.of(context).primaryColor, surfaceTintColor: Theme.of(context).secondaryHeaderColor, foregroundColor: Theme.of(context).primaryColor,), 
               onPressed: (){changeScreen('volunteer-login');}, label: Text('Volunteer', style: TextStyle(
-                //color: Color.fromARGB(255, 208, 183, 134), 
+                                              //color: Color.fromARGB(255, 208, 183, 134), 
                fontSize: 20),), icon: Image.asset('assets/images/volunteers.png', scale: 12,),),
+
             
             ElevatedButton.icon(style: ElevatedButton.styleFrom(
-                shadowColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 204, 136, 1), foregroundColor: Color.fromARGB(255, 27, 136, 134)), 
+                backgroundColor: Theme.of(context).scaffoldBackgroundColor,//Theme.of(context).primaryColor, 
+              side: BorderSide(color: Theme.of(context).scaffoldBackgroundColor, width: 0),//Theme.of(context).primaryColor),
+                                            //side: BorderSide(width: 1, color: const Color.fromARGB(255, 27, 136, 134))
+                shadowColor: Theme.of(context).primaryColor, surfaceTintColor: Theme.of(context).secondaryHeaderColor, foregroundColor: Theme.of(context).primaryColor,), 
               onPressed: (){changeScreen('donor-screen');}, label: Text('Donor', style: TextStyle(
-                //color: Color.fromARGB(255, 208, 183, 134), 
+                                               //color: Color.fromARGB(255, 208, 183, 134), 
                 fontSize: 20),), icon: Image.asset('assets/images/donorlogo.png', scale: 12,),),
+
           ],
         ),
       ),
