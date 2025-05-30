@@ -15,6 +15,8 @@ dependencies:
   sqflite: ^2.4.1
   path: ^1.9.0
   sqflite_common_ffi: ^2.3.4+4
+  google_fonts: ^6.1.0
+  provider: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -25,10 +27,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logoNA.png
-    - assets/images/nahej.jpeg
     - assets/images/donorlogo.png
     - assets/images/admin.png
     - assets/images/volunteers.png
     - assets/images/temp-02.jpg
     - assets/images/temp-03.jpg
+    - assets\images\temp-04.jpg
     - assets/images/home.png

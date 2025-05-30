@@ -54,7 +54,7 @@ class AdminScreen extends StatelessWidget{
                 Padding(
                   padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
                   child: Row(
-                    spacing: 80,
+                    //spacing: 80,
                     children: [
                       Text('Volunteers: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                       //SizedBox(width: 80,),
@@ -62,6 +62,7 @@ class AdminScreen extends StatelessWidget{
                       //     width: 141,
                       //     height: 28,
                       //     child: 
+                      Spacer(),
                       ElevatedButton(style: ElevatedButton.styleFrom(surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), onPressed: openAddVolunteerOverlay, child: Text('Add Volunteer')),
                         // ),
                     ],

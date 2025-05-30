@@ -147,7 +147,6 @@ class _NewDonationState extends State<NewDonation> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -166,18 +165,20 @@ class _NewDonationState extends State<NewDonation> {
               ),
             ],
           ),
-          SizedBox(height: 16),
-          TextField(
-            //onChanged: _saveDonationTime,
-            controller: _timeController,
-            maxLength: 10,
-            decoration: InputDecoration(
-              label: Text("Time"),
-            ),
-          ),
+          //SizedBox(height: 16),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Expanded(
+                child: TextField(
+                  //onChanged: _saveDonationTime,
+                  controller: _timeController,
+                  maxLength: 10,
+                  decoration: InputDecoration(
+                    label: Text("Time"),
+                  ),
+                ),
+              ),
+              Spacer(),
               DropdownButton(
                   value: _selectedCategory,
                   items: Category.values
@@ -194,18 +195,8 @@ class _NewDonationState extends State<NewDonation> {
                     setState(() {
                       _selectedCategory = value;
                     });
-                  }),
-              Spacer(),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: Text('Cancel'),
-              ),
-              ElevatedButton(
-                onPressed: _submitDonationForm,
-                child: Text('Save Donation'),
-              ),
+                  }
+                ),
             ],
           ),
           Row(
@@ -221,6 +212,21 @@ class _NewDonationState extends State<NewDonation> {
                     );
                   }
                 )
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Cancel'),
+              ),
+              ElevatedButton(
+                onPressed: _submitDonationForm,
+                child: Text('Save Donation'),
               ),
             ],
           ),

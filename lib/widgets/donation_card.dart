@@ -34,13 +34,13 @@ class DonationCard extends StatelessWidget{
     //NOT Assigned donations in ADMIN screen
     if (!donation.isAssigned && activeScreenName == 'admin-screen') {
       button = ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 27, 136, 134), foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
+              //style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 27, 136, 134), foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
               onPressed: (){openAssignTo(donation);}, 
               child: Text('Assign to')
             );
       card =  Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: const Color.fromARGB(255, 208, 183, 134),
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          // color: const Color.fromARGB(255, 208, 183, 134),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -96,15 +96,15 @@ class DonationCard extends StatelessWidget{
       }
       else{
         button = ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 27, 136, 134), foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
+              //style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Color.fromARGB(255, 27, 136, 134), foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
               onPressed: (){openAssignTo(donation);}, 
               child: Text('Assign to')
             );
       }
 
       card =  Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: const Color.fromARGB(255, 208, 183, 134),
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          // color: const Color.fromARGB(255, 208, 183, 134),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -152,15 +152,15 @@ class DonationCard extends StatelessWidget{
     // Assigned donations to a specific Volunteer in VOLUNTEER screen
     if(donation.isAssigned && activeScreenName == 'volunteer-screen' && donation.volunteerAssigned == volunteerLogged && !donation.isCollected){
       button = ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
+              //style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
               onPressed:(){ 
                 isCollected(donation, volunteerLogged);
                 }, 
               child: Text('Complete')
             );
       card =  Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: const Color.fromARGB(255, 208, 183, 134),
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          // color: const Color.fromARGB(255, 208, 183, 134),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -212,8 +212,8 @@ class DonationCard extends StatelessWidget{
     if(donation.isAssigned && activeScreenName == 'volunteer-screen' && donation.volunteerAssigned == volunteerLogged && donation.isCollected){
       button = Container(color: Colors.greenAccent, child: Text('Complete'),);
       card =  Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: const Color.fromARGB(255, 208, 183, 134),
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          // color: const Color.fromARGB(255, 208, 183, 134),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
@@ -261,15 +261,15 @@ class DonationCard extends StatelessWidget{
     //NOT Assigned donations (AVAILABLE) in Volunteer screen
     if (!donation.isAssigned && activeScreenName == 'volunteer-screen'){
       button = ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
+              // style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 27, 136, 134), surfaceTintColor: Colors.black, foregroundColor: Color.fromARGB(255, 208, 183, 134), side: BorderSide(color: Color.fromARGB(255, 27, 136, 134))), 
               onPressed:(){ 
                 reserve(donation, volunteerLogged);
                 }, 
               child: Text('Reserve')
             );
       card =  Card(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          color: const Color.fromARGB(255, 208, 183, 134),
+          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          // color: const Color.fromARGB(255, 208, 183, 134),
           child: Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
