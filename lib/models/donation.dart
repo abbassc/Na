@@ -12,9 +12,9 @@ const categoryName = {
   };
 
 const categoryIcon = {
-  Category.Money: Icons.money,
-  Category.Food: Icons.food_bank,
-  Category.Clothes: Icons.water,
+  Category.Money: Icons.paid,
+  Category.Food: Icons.lunch_dining,
+  Category.Clothes: Icons.checkroom,
 };
 class Donation {
 
@@ -104,14 +104,15 @@ class DonationBucket {
   final Category category;
   final List<Donation> donations;
 
-  double get totalDonations {
-    double sum = 0;
+  int get numberOfDonations {
+    int num = 0;
     for (Donation d in donations) {
-      if(d.amount != null ) {
-        sum += d.amount!;
-      }
+      // if(d.amount != null ) {
+      //   sum += d.amount!;
+      // }
+      num +=1;
     }
-    return sum;
+    return num;
   }
 }
 

@@ -24,11 +24,11 @@ class ChartScreen extends StatelessWidget {
     ];
   }
 
-  double get maxTotalDonations {
-    double max = 0;
+  int get maxTotalDonations {
+    int max = 0;
     for (DonationBucket bucket in buckets) {
-      if (bucket.totalDonations > max) {
-        max = bucket.totalDonations;
+      if (bucket.numberOfDonations > max) {
+        max = bucket.numberOfDonations;
       }
     }
     return max;
@@ -46,8 +46,11 @@ class ChartScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
           colors: [
-            const Color.fromARGB(29, 124, 77, 255),
-            const Color.fromARGB(115, 124, 77, 255)
+            //Theme.of(context).primaryColorLight,
+            Theme.of(context).colorScheme.onPrimary,
+            Theme.of(context).colorScheme.onSecondary,
+            ///const Color.fromARGB(29, 124, 77, 255),
+            //const Color.fromARGB(115, 124, 77, 255)
           ],
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
@@ -61,7 +64,7 @@ class ChartScreen extends StatelessWidget {
               children: [
                 for (DonationBucket bucket in buckets)
                   ChartBar(
-                    fill: bucket.totalDonations / maxTotalDonations,
+                    fill: bucket.numberOfDonations / maxTotalDonations,
                   )
               ],
             ),
@@ -72,7 +75,7 @@ class ChartScreen extends StatelessWidget {
                   (category) => Expanded(
                     child: Icon(
                       categoryIcon[category],
-                      color: const Color.fromARGB(190, 104, 58, 183),
+                      color: Theme.of(context).colorScheme.onSecondary,//const Color.fromARGB(190, 104, 58, 183),
                     ),
                   ),
                 )

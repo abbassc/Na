@@ -27,10 +27,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/logoNA.png
+    - assets/images/logoNA02.png
     - assets/images/donorlogo.png
     - assets/images/admin.png
     - assets/images/volunteers.png
     - assets/images/temp-02.jpg
     - assets/images/temp-03.jpg
-    - assets\images\temp-04.jpg
+    - assets/images/temp-04.png
+    - assets/images/temp-05.jpg
     - assets/images/home.png

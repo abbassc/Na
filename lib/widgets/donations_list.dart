@@ -15,8 +15,10 @@ class DonationsList extends StatelessWidget{
   final Volunteer? volunteerLogged;
   final void Function(Donation) onDeleteDonation;
   final String? part;
+  final Function openDonationDetails;
+  final Function openVolunteerDetails;
 
-  const DonationsList({required this.donationsList, required this.onDeleteDonation, super.key, required this.activeScreenName, required this.openAssignTo, required this.reserve, required this.isCollected, this.volunteerLogged, this.part,});
+  const DonationsList({required this.donationsList, required this.onDeleteDonation, super.key, required this.activeScreenName, required this.openAssignTo, required this.reserve, required this.isCollected, this.volunteerLogged, this.part, required this.openDonationDetails, required this.openVolunteerDetails,});
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,54 @@ class DonationsList extends StatelessWidget{
     List<Donation> pendinigDonationsList = donationsList.where((donation) => !donation.isCollected).toList();
 
     if(activeScreenName == 'admin-screen'){
+      if(part == 'details-assigned'){
+        return ListView.builder(
+      itemCount: assignedTOVolunteerDonationsList.length,
+      shrinkWrap: true,
+      itemBuilder: (context, index) => //DonationCard(donationsList[index])
+        Dismissible(
+          background: Container(
+            padding: EdgeInsets.only(left: 12),
+            decoration: ShapeDecoration(color: const Color.fromARGB(255, 173, 25, 15), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+            alignment: Alignment.centerLeft,
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+              size: 25,
+            ),
+          ),
+          key: ValueKey(assignedTOVolunteerDonationsList[index]),
+          child: DonationCard(assignedTOVolunteerDonationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
+          onDismissed: (direction) {
+            onDeleteDonation(assignedTOVolunteerDonationsList[index]);
+          },
+        ),
+      );
+      }
+      if(part == 'details-completed'){
+        return ListView.builder(
+          itemCount: completedByVolunteerDonationsList.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => //DonationCard(donationsList[index])
+            Dismissible(
+              background: Container(
+                padding: EdgeInsets.only(left: 12),
+                decoration: ShapeDecoration(color: const Color.fromARGB(255, 173, 25, 15), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+                alignment: Alignment.centerLeft,
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.white,
+                  size: 25,
+                ),
+              ),
+              key: ValueKey(completedByVolunteerDonationsList[index]),
+              child: DonationCard(completedByVolunteerDonationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
+              onDismissed: (direction) {
+                onDeleteDonation(completedByVolunteerDonationsList[index]);
+              },
+            ),
+        );
+      }
       if(part == 'collected'){
         return ListView.builder(
           itemCount: collectedDonationsList.length,
@@ -46,13 +96,14 @@ class DonationsList extends StatelessWidget{
                 ),
               ),
               key: ValueKey(collectedDonationsList[index]),
-              child: DonationCard(collectedDonationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve,),
+              child: DonationCard(collectedDonationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
               onDismissed: (direction) {
                 onDeleteDonation(collectedDonationsList[index]);
               },
             ),
         );
       }
+      
       return ListView.builder(
       itemCount: pendinigDonationsList.length,
       shrinkWrap: true,
@@ -69,7 +120,7 @@ class DonationsList extends StatelessWidget{
             ),
           ),
           key: ValueKey(pendinigDonationsList[index]),
-          child: DonationCard(pendinigDonationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve,),
+          child: DonationCard(pendinigDonationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
           onDismissed: (direction) {
             onDeleteDonation(pendinigDonationsList[index]);
           },
@@ -94,7 +145,7 @@ class DonationsList extends StatelessWidget{
             ),
           ),
           key: ValueKey(donationsList[index]),
-          child: DonationCard(donationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve,),
+          child: DonationCard(donationsList[index], activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
           onDismissed: (direction) {
             onDeleteDonation(donationsList[index]);
           },
@@ -125,14 +176,23 @@ class DonationsList extends StatelessWidget{
       );
     }
 
-    if(activeScreenName == 'volunteer-screen' && part != null){
+    if((activeScreenName == 'volunteer-screen' && part != null) || part == 'details-collected' || part == 'details-assigned'){
       if(part == 'tasks'){
         return ListView.builder(
           itemCount: assignedTOVolunteerDonationsList.length,
           shrinkWrap: true,
           itemBuilder: (context, index) => 
             DonationCard(assignedTOVolunteerDonationsList[index], 
-                activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve,),
+                activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
+        );
+      }
+      if(part == 'details-assigned'){
+        return ListView.builder(
+          itemCount: assignedTOVolunteerDonationsList.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => 
+            DonationCard(assignedTOVolunteerDonationsList[index], 
+                part: 'details-assigned', activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
         );
       }
       if(part == 'archive'){
@@ -141,7 +201,16 @@ class DonationsList extends StatelessWidget{
           shrinkWrap: true,
           itemBuilder: (context, index) => 
             DonationCard(completedByVolunteerDonationsList[index], 
-                activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve,),
+                activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
+        );
+      }
+      if(part == 'details-collected'){
+        return ListView.builder(
+          itemCount: completedByVolunteerDonationsList.length,
+          shrinkWrap: true,
+          itemBuilder: (context, index) => 
+            DonationCard(completedByVolunteerDonationsList[index], 
+                part: 'details-collected', activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
         );
       }
     }
@@ -151,7 +220,7 @@ class DonationsList extends StatelessWidget{
       shrinkWrap: true,
       itemBuilder: (context, index) => 
         DonationCard(availableDonationsList[index], 
-            activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve,),
+            activeScreenName: activeScreenName, openAssignTo: openAssignTo, isCollected: isCollected, volunteerLogged: volunteerLogged, reserve: reserve, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,),
     );
   }
 }

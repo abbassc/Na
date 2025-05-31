@@ -5,7 +5,7 @@ import 'package:nahej_ali/widgets/volunteers_list.dart';
 
 class VolunteerLogin extends StatelessWidget{
 
-  const VolunteerLogin(this.changeScreen, {super.key, required this.registeredVolunteersList, required this.registeredDonationsList, required this.openAssignTo, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer,});
+  const VolunteerLogin(this.changeScreen, {super.key, required this.registeredVolunteersList, required this.registeredDonationsList, required this.openAssignTo, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.openVolunteerDetails,});
 
   final Function changeScreen;
   final List<Volunteer> registeredVolunteersList;
@@ -16,6 +16,7 @@ class VolunteerLogin extends StatelessWidget{
   final Function isCollected;
   final Function openAddVolunteerOverlay;
   final Function deleteVolunteer;
+  final Function openVolunteerDetails;
 
 
   @override
@@ -36,7 +37,7 @@ class VolunteerLogin extends StatelessWidget{
             child: SizedBox(
               width: 300,
               height: 400,
-              child: VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'volunteer-login', openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,),
+              child: VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'volunteer-login', openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, openVolunteerDetails: openVolunteerDetails,),
             ),
           ),
 

@@ -11,6 +11,7 @@ class VolunteerCard extends StatelessWidget{
   //final Volunteer? volunteerLogged;
   final Donation? donationToAssig;
 
+  final Function openVolunteerDetails;
   final Function openAssignTo;
   final Function changeScreen;
   final Function reserve;
@@ -21,7 +22,7 @@ class VolunteerCard extends StatelessWidget{
   final List<Donation> registeredDonationsList;
   final List<Volunteer> registeredVolunteersList;
 
-  const VolunteerCard(this.volunteer, {super.key, required this.activeScreen, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, this.donationToAssig, });
+  const VolunteerCard(this.volunteer, {super.key, required this.activeScreen, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, this.donationToAssig, required this.openVolunteerDetails, });
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +140,7 @@ class VolunteerCard extends StatelessWidget{
     }
 
     return Card(
+      
       //margin: EdgeInsets.only(),
       //semanticContainer: false,
       shadowColor: Theme.of(context).colorScheme.secondary,
@@ -146,6 +148,10 @@ class VolunteerCard extends StatelessWidget{
       //clipBehavior: Clip.antiAlias,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       color: Theme.of(context).colorScheme.primary,//Theme.of(context).primaryColor,
+      child: InkWell(
+              onTap: (){openVolunteerDetails(volunteer);},
+              splashColor: Theme.of(context).colorScheme.secondary,
+              borderRadius: BorderRadius.circular(16),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16,),
         child: Column(
@@ -171,6 +177,7 @@ class VolunteerCard extends StatelessWidget{
             ),
           ],
         ),
+      ),
       ),
     );
   }

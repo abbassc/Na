@@ -9,6 +9,8 @@ class DonorScreen extends StatelessWidget{
   final Function openAssignTo;
   final Function reserve;
   final Function isCollected;
+  final Function openDonationDetails;
+  final Function openVolunteerDetails;
   //final Widget upBar; 
 
   final VoidCallback openAddDonationOverlay;
@@ -20,7 +22,7 @@ class DonorScreen extends StatelessWidget{
   const DonorScreen(
     //this.changeScreen, this.openAddDonationOverlay, 
   //this.addNewDonation, this.deleteDonation, 
-      {required this.changeScreen, required this.openAddDonationOverlay, required this.deleteDonation, required this.registeredDonationsList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected,}
+      {required this.changeScreen, required this.openAddDonationOverlay, required this.deleteDonation, required this.registeredDonationsList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected, required this.openDonationDetails, required this.openVolunteerDetails,}
   );
 
   @override
@@ -39,7 +41,7 @@ class DonorScreen extends StatelessWidget{
       ),
     );
     if (registeredDonationsList.isNotEmpty) {
-      mainContent = DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'donor-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,);
+      mainContent = DonationsList(donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'donor-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,);
     }
 
     return //Scaffold(

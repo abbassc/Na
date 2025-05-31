@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nahej_ali/themes/nahej_ali_theme_data.dart';
+import 'package:provider/provider.dart';
 
 class ChartBar extends StatelessWidget {
   const ChartBar({super.key, required this.fill});
@@ -7,6 +9,10 @@ class ChartBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //final themeManager = Provider.of<ThemeManager>(context);
+    Color themeColor = Theme.of(context).disabledColor;
+    
     return Expanded(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -21,7 +27,8 @@ class ChartBar extends StatelessWidget {
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(8),
                 ),
-                color: Colors.deepPurple),
+                color: themeColor,
+                ),
           ),
         ),
       ),

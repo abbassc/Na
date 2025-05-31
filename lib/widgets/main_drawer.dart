@@ -3,52 +3,196 @@ import 'package:nahej_ali/themes/nahej_ali_theme_data.dart';
 import 'package:provider/provider.dart';
 
 class MainDrawer extends StatelessWidget {
-  const MainDrawer({super.key, required this.onFiltersTap, required this.onThemesTap, required this.onModeTap, required this.activeScreenName});
+  const MainDrawer({super.key, required this.onFiltersTap, required this.onThemesTap, required this.onModeTap, required this.activeScreenName, required this.activePart});
 
   final void Function() onFiltersTap;
   final void Function() onThemesTap;
   final void Function() onModeTap;
+
   final String activeScreenName;
+  final String activePart;
 
 
   @override
   Widget build(BuildContext context) {
 
     final themeManager = Provider.of<ThemeManager>(context);
-    AssetImage logo = AssetImage('assets/images/temp-03.jpg');
+    AssetImage logo ;//= AssetImage('assets/images/temp-03.jpg');
+    DrawerHeader head;// =  DrawerHeader(
+          //   padding: EdgeInsets.all(0),
+          //   decoration: BoxDecoration(image: DecorationImage(image: logo),),
+          //   child: Column(
+          //      crossAxisAlignment: CrossAxisAlignment.stretch,
+          //      mainAxisAlignment: MainAxisAlignment.center,
+          //     children: [
+          //       // Icon(
+          //       //   Icons.payments,
+          //       //   size: 45,
+          //       // ),
+          //       SizedBox(height: 20),
+          //       // Text(
+          //       //   'Nahej ALi',
+          //       //   textAlign: TextAlign.center,
+          //       //   style: TextStyle(
+          //       //     fontWeight: FontWeight.w600,
+          //       //   ),
+          //       // ),
+          //     ],
+          //    ),
+          // );
 
     if(Theme.of(context).brightness == Brightness.dark){
       if(themeManager.currentTheme == AppThemeChoice.original){
         logo = AssetImage('assets/images/temp-02.jpg');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              color: Color.fromARGB(255,26,136,137),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else if(themeManager.currentTheme == AppThemeChoice.palestine){
-        logo = AssetImage('assets/images/temp-04.jpg');
+        logo = AssetImage('assets/images/logoNA02.png');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              //color: Color.fromARGB(255,27,139,139),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else if(themeManager.currentTheme == AppThemeChoice.ramadan){
-        logo = AssetImage('assets/images/logoNA.png');
+        logo = AssetImage('assets/images/logoNA02.png');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              //color: Color.fromARGB(255,27,139,139),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else if(themeManager.currentTheme == AppThemeChoice.ashura){
-        logo = AssetImage('assets/images/logoNA.png');
+        logo = AssetImage('assets/images/temp-05.jpg');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else {
         logo = AssetImage('assets/images/logoNA.png');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              //color: Color.fromARGB(255,27,139,139),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
     }
     else {
       if(themeManager.currentTheme == AppThemeChoice.original){
         logo = AssetImage('assets/images/temp-03.jpg');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              //color: Color.fromARGB(255,27,139,139),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else if(themeManager.currentTheme == AppThemeChoice.palestine){
-        logo = AssetImage('assets/images/temp-04.jpg');
+        logo = AssetImage('assets/images/temp-04.png');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              //color: Color.fromARGB(255,27,139,139),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else if(themeManager.currentTheme == AppThemeChoice.ramadan){
-        logo = AssetImage('assets/images/logoNA.png');
+        logo = AssetImage('assets/images/logoNA02.png');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              //color: Color.fromARGB(255,27,139,139),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else if(themeManager.currentTheme == AppThemeChoice.ashura){
-        logo = AssetImage('assets/images/logoNA.png');
+        logo = AssetImage('assets/images/temp-05.jpg');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              color: Color.fromARGB(255, 0, 0, 0),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
       else {
         logo = AssetImage('assets/images/logoNA.png');
+        head = DrawerHeader(
+            padding: EdgeInsets.all(0),
+            decoration: BoxDecoration(
+              image: DecorationImage(image: logo),
+              //color: Color.fromARGB(255,27,139,139),
+            ),
+            child: Column(
+               crossAxisAlignment: CrossAxisAlignment.stretch,
+               mainAxisAlignment: MainAxisAlignment.center,
+              children: [SizedBox(height: 20),],
+             ),
+          );
       }
     }
 
@@ -68,7 +212,7 @@ class MainDrawer extends StatelessWidget {
       ],
     );
 
-    if(activeScreenName == 'admin-screen'){
+    if(activeScreenName == 'admin-screen' && (activePart == 'Donations' || activePart == 'Collected')){
       listTiles = Column(
         children: [
           ListTile(
@@ -93,40 +237,13 @@ class MainDrawer extends StatelessWidget {
 
     return Drawer(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          DrawerHeader(
-            padding: EdgeInsets.all(0),
-            decoration: BoxDecoration(
-              image: DecorationImage(image: logo), 
-            //   gradient: LinearGradient(
-            //     colors: [
-            //       const Color.fromARGB(167, 155, 39, 176),
-            //       const Color.fromARGB(57, 155, 39, 176),
-            //     ],
-            //     begin: Alignment.topLeft,
-            //     end: Alignment.bottomRight,
-            //   ),
-            ),
-            child: Column(
-               crossAxisAlignment: CrossAxisAlignment.stretch,
-               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                // Icon(
-                //   Icons.payments,
-                //   size: 45,
-                // ),
-                SizedBox(height: 20),
-                // Text(
-                //   'Nahej ALi',
-                //   textAlign: TextAlign.center,
-                //   style: TextStyle(
-                //     fontWeight: FontWeight.w600,
-                //   ),
-                // ),
-              ],
-             ),
-          ),
+
+          head,
+
           listTiles,
+
         ],
       ),
     );

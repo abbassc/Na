@@ -9,6 +9,8 @@ class AdminScreen extends StatelessWidget{
 
   final String activePart;
 
+  final Function openDonationDetails;
+  final Function openVolunteerDetails;
   final Function openAssignTo;
   final Function reserve;
   final Function isCollected;
@@ -27,7 +29,7 @@ class AdminScreen extends StatelessWidget{
 
   const AdminScreen( 
   // this.deleteVolunteer, 
-    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.deleteDonation, required this.registeredDonationsList, required this.registeredVolunteersList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected, required this.activePart}
+    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.deleteDonation, required this.registeredDonationsList, required this.registeredVolunteersList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected, required this.activePart, required this.openDonationDetails, required this.openVolunteerDetails}
   );
 
   @override
@@ -69,22 +71,22 @@ class AdminScreen extends StatelessWidget{
                   ),
                 ),
             
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: 300,
-                        height: 470,
-                        child:
-                       //Expanded(child: 
-                       VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,)
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     children: [
+                //       SizedBox(
+                //         width: 300,
+                //         height: 470,
+                //         child:
+                //        //Expanded(child: 
+                       Expanded(child: VolunteersList(volunteersList: registeredVolunteersList, onDeleteVolunteer: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, openVolunteerDetails: openVolunteerDetails,))
                        //),
-                       ),
-                    ],
-                  ),
-                ),
+                       //),
+                    //],
+                  //),
+                //),
               ],
             ),
           //),
@@ -128,7 +130,7 @@ class AdminScreen extends StatelessWidget{
                         height: 481,
                         child: 
                       //Expanded(child: 
-                      DonationsList(part: 'pending', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,)
+                      DonationsList(part: 'pending', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,)
                       //),
                       ),
                     ],
@@ -178,7 +180,7 @@ class AdminScreen extends StatelessWidget{
                         child: 
                       
                       //Expanded(child: 
-                      DonationsList(part: 'collected', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,)
+                      DonationsList(part: 'collected', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'admin-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,)
                       //),
                       ),
                     ],

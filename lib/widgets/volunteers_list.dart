@@ -9,6 +9,7 @@ class VolunteersList extends StatelessWidget{
   final List<Volunteer> volunteersList;
   final String activeScreenName;
 
+  final Function openVolunteerDetails;
   final Function openAssignTo;
   final Function changeScreen;
   final Function reserve;
@@ -23,7 +24,7 @@ class VolunteersList extends StatelessWidget{
 
   final void Function(Volunteer) onDeleteVolunteer;
 
-  const VolunteersList({required this.volunteersList, required this.onDeleteVolunteer, super.key, required this.activeScreenName, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, this.donationToAssign,});
+  const VolunteersList({required this.volunteersList, required this.onDeleteVolunteer, super.key, required this.activeScreenName, required this.openAssignTo, required this.changeScreen, required this.reserve, required this.isCollected, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, this.donationToAssign, required this.openVolunteerDetails,});
 
 
   @override
@@ -46,7 +47,7 @@ class VolunteersList extends StatelessWidget{
             ),
           ),
           key: ValueKey(volunteersList[index]),
-          child: ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(volunteersList[index], activeScreen: activeScreenName, openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,)),
+          child: ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(volunteersList[index], activeScreen: activeScreenName, openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, openVolunteerDetails: openVolunteerDetails,)),
           onDismissed: (direction) {
             onDeleteVolunteer(volunteersList[index]);
           },
@@ -81,7 +82,7 @@ class VolunteersList extends StatelessWidget{
         itemCount: volunteersList.length,
         shrinkWrap: true,
         itemBuilder: (context, index) => //VolunteerCard(volunteersList[index])
-          ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(donationToAssig: donationToAssign, volunteersList[index], activeScreen: activeScreenName, openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,)),
+          ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(donationToAssig: donationToAssign, volunteersList[index], activeScreen: activeScreenName, openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, openVolunteerDetails: openVolunteerDetails,)),
       );
     }
 
@@ -89,7 +90,7 @@ class VolunteersList extends StatelessWidget{
         itemCount: volunteersList.length,
         shrinkWrap: true,
         itemBuilder: (context, index) => //VolunteerCard(volunteersList[index])
-          ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(volunteersList[index], activeScreen: activeScreenName, openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList,)),
+          ClipRRect(clipBehavior: Clip.antiAlias, borderRadius: BorderRadius.circular(20), child: VolunteerCard(volunteersList[index], activeScreen: activeScreenName, openAssignTo: openAssignTo, changeScreen: changeScreen, reserve: reserve, isCollected: isCollected, openAddVolunteerOverlay: openAddVolunteerOverlay, deleteVolunteer: deleteVolunteer, registeredDonationsList: registeredDonationsList, registeredVolunteersList: registeredVolunteersList, openVolunteerDetails: openVolunteerDetails,)),
       );
   }
 }

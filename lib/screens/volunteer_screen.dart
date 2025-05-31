@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nahej_ali/data/donations.dart';
 import 'package:nahej_ali/db/nahejAli_storage.dart';
 import 'package:nahej_ali/models/donation.dart';
 import 'package:nahej_ali/models/volunteer.dart';
@@ -9,6 +8,8 @@ class VolunteerScreen extends StatelessWidget{
 
   final String activePart;
 
+  final Function openDonationDetails;
+  final Function openVolunteerDetails;
   final Function openAssignTo;
   final Function changeScreen;
   final Function reserve;
@@ -22,7 +23,7 @@ class VolunteerScreen extends StatelessWidget{
   final List<Volunteer> registeredVolunteersList;
 
   const VolunteerScreen(
-    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected, this.volunteerLogged, required this.activePart}
+    {required this.changeScreen, required this.openAddVolunteerOverlay, required this.deleteVolunteer, required this.registeredDonationsList, required this.registeredVolunteersList, super.key, required this.openAssignTo, required this.reserve, required this.isCollected, this.volunteerLogged, required this.activePart, required this.openDonationDetails, required this.openVolunteerDetails}
   );
 
   @override
@@ -44,25 +45,12 @@ class VolunteerScreen extends StatelessWidget{
                     mainAxisAlignment: MainAxisAlignment.center,
                     spacing: 80,
                     children: [
-                      Text('Tasks: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black),),          
+                      Text('Tasks: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),),          
                     ],
                   ),
                 ),
                         
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      // SizedBox(
-                      //   width: 300,//double.infinity,
-                      //   height: 473,
-                      //   child: 
-                        Expanded(child: DonationsList(part: 'tasks', volunteerLogged: volunteerLogged, donationsList: registeredDonationsList, onDeleteDonation: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected,)),
-                      //),
-                    ],
-                  ),
-                ),
+                Expanded(child: DonationsList(part: 'tasks', volunteerLogged: volunteerLogged, donationsList: registeredDonationsList, onDeleteDonation: (volunteer){deleteVolunteer(volunteer);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,)),
 
               ]
             ),
@@ -84,30 +72,17 @@ class VolunteerScreen extends StatelessWidget{
             spacing: 0,
             children: [
           
-              Padding(
+                    Padding(
                       padding: const EdgeInsets.only(left: 8, right: 8,),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text('Available Donations: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                          Text('Available Donations: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                         ],
                       ),
                     ),
                       
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // SizedBox(
-                          //   width: 300,
-                          //   height: 473,
-                            //child: 
-                            Expanded(child: DonationsList(part: 'available', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,)),
-                          //),
-                        ],
-                      ),
-                    ),
+                    Expanded(child: DonationsList(part: 'available', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,)),
           
             ]
           ),
@@ -136,25 +111,12 @@ class VolunteerScreen extends StatelessWidget{
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Archive: ', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
+                    Text('Archive: ', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                   ],
                 ),
               ),
                 
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    // SizedBox(
-                    //   width: 300,
-                    //   height: 473,
-                    //   child: 
-                      Expanded(child: DonationsList(part: 'archive', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged,)),
-                    //),
-                  ],
-                ),
-              ),
+              Expanded(child: DonationsList(part: 'archive', donationsList: registeredDonationsList, onDeleteDonation: (donation){deleteDonation(donation);}, activeScreenName: 'volunteer-screen', openAssignTo: openAssignTo, reserve: reserve, isCollected: isCollected, volunteerLogged: volunteerLogged, openDonationDetails: openDonationDetails, openVolunteerDetails: openVolunteerDetails,)),
           
             ]
           ),

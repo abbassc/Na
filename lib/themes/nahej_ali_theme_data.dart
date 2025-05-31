@@ -177,7 +177,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary1, surfaceTintColor: Color.fromARGB(255, 204, 136, 1), foregroundColor: NahejAliColors.primary1),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary1, backgroundColor: NahejAliColors.primary1,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary1, backgroundColor: NahejAliColors.primary1, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: Colors.white,),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary1,),
       scaffoldBackgroundColor: Colors.white,
     );
@@ -187,7 +187,7 @@ class NahejAliThemeConfig {
       brightness: Brightness.dark,
       //primaryColor: NahejAliColors.primary1,
       //scaffoldBackgroundColor: NahejAliColors.secondary1,
-      colorScheme: ColorScheme(brightness: Brightness.dark, primary: NahejAliColors.secondary1, onPrimary: const Color.fromARGB(255, 117, 102, 74), secondary: NahejAliColors.primary1, onSecondary: const Color.fromARGB(255, 15, 79, 77), error: Colors.red, onError: const Color.fromARGB(255, 154, 43, 35), surface: Colors.white, onSurface: Colors.black),
+      colorScheme: ColorScheme(brightness: Brightness.dark, primary: NahejAliColors.secondary1, onPrimary: const Color.fromARGB(255, 117, 102, 74), secondary: NahejAliColors.primary1, onSecondary: const Color.fromARGB(255, 15, 79, 77), error: Colors.red, onError: const Color.fromARGB(255, 154, 43, 35), surface: Colors.white, onSurface: Colors.black, ),
       //colorScheme: ColorScheme.fromSeed(seedColor: NahejAliColors.secondary1, brightness: Brightness.dark,),
       
       
@@ -207,7 +207,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary1, surfaceTintColor: const Color.fromARGB(255, 0, 180, 177), foregroundColor: NahejAliColors.secondary1),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary1, backgroundColor: const Color.fromARGB(255, 156, 138, 101),),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary1, backgroundColor: const Color.fromARGB(255, 156, 138, 101), unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: const Color.fromARGB(255, 50, 75, 75)),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary1,),
       scaffoldBackgroundColor: const Color.fromARGB(255, 50, 75, 75),
     );
@@ -238,7 +238,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary2, surfaceTintColor: const Color.fromARGB(255, 230, 28, 1), foregroundColor: NahejAliColors.primary2,),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary2, backgroundColor: NahejAliColors.primary2,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary2, backgroundColor: NahejAliColors.primary2, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: Colors.white,),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary2,),
       scaffoldBackgroundColor: Colors.white,
     );
@@ -268,7 +268,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary2, surfaceTintColor: const Color.fromARGB(255, 1, 127, 206), foregroundColor: NahejAliColors.secondary2),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary2, backgroundColor: const Color.fromARGB(255, 172, 112, 104),),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary2, backgroundColor: const Color.fromARGB(255, 172, 112, 104), unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: const Color.fromARGB(255, 78, 85, 89),),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary2,),
       scaffoldBackgroundColor: const Color.fromARGB(255, 78, 85, 89),
     );
@@ -299,7 +299,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary3, surfaceTintColor: const Color.fromARGB(255, 147, 180, 2), foregroundColor: NahejAliColors.primary3),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary3, backgroundColor: NahejAliColors.primary3,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary3, backgroundColor: NahejAliColors.primary3, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: Colors.white,),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary3,),
       scaffoldBackgroundColor: Colors.white,
     );
@@ -329,7 +329,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary3, surfaceTintColor: const Color.fromARGB(255, 220, 22, 0), foregroundColor: NahejAliColors.secondary3),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary3, backgroundColor: NahejAliColors.secondary3,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary3, backgroundColor: NahejAliColors.secondary3, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: const Color.fromARGB(255, 95, 82, 80),),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary3,),
       scaffoldBackgroundColor: const Color.fromARGB(255, 95, 82, 80),
     );
@@ -360,7 +360,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary4, surfaceTintColor: NahejAliColors.secondary42, foregroundColor: NahejAliColors.primary4),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary42, backgroundColor: NahejAliColors.primary4,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary42, backgroundColor: Colors.black, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: Colors.white,),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary42,),
       scaffoldBackgroundColor: Colors.white,
     );
@@ -390,7 +390,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary41, surfaceTintColor: NahejAliColors.primary4, foregroundColor: NahejAliColors.secondary41),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary4, backgroundColor: NahejAliColors.secondary41,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary4, backgroundColor: NahejAliColors.secondary41, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: const Color.fromARGB(255, 74, 57, 57),),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary4,),
       scaffoldBackgroundColor: const Color.fromARGB(255, 74, 57, 57),
     );
@@ -421,7 +421,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.primary55, surfaceTintColor: const Color.fromARGB(255, 212, 135, 2), foregroundColor: NahejAliColors.primary55),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.secondary55, backgroundColor: NahejAliColors.primary55,),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.secondary55, backgroundColor: NahejAliColors.primary55, unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: Colors.white,),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.secondary55,),
       scaffoldBackgroundColor: Colors.white,
     );
@@ -451,7 +451,7 @@ class NahejAliThemeConfig {
       //iconButtonTheme: IconButtonThemeData(style: ElevatedButton.styleFrom(shadowColor: NahejAliColors.secondary55, surfaceTintColor: const Color.fromARGB(255, 179, 0, 158), foregroundColor: NahejAliColors.secondary55),),
       appBarTheme: AppBarTheme(foregroundColor: NahejAliColors.primary55, backgroundColor: const Color.fromARGB(255, 152, 132, 98),),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(selectedItemColor: NahejAliColors.primary55, backgroundColor: const Color.fromARGB(255, 152, 132, 98), unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),),
-      //drawerTheme: DrawerThemeData(),
+      drawerTheme: DrawerThemeData(backgroundColor: const Color.fromARGB(255, 75, 62, 74),),
       cardTheme: CardThemeData(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)), color: NahejAliColors.primary55,),
       scaffoldBackgroundColor: const Color.fromARGB(255, 75, 62, 74),
     );
