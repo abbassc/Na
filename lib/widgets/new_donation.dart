@@ -155,7 +155,7 @@ class _NewDonationState extends State<NewDonation> {
                     children: [
                       Text(
                         _selectedDate == null
-                            ? 'No Date Selected'
+                            ? 'Select Date'
                             : DateFormat.yMd().format(_selectedDate!),
                       ),
                       IconButton(

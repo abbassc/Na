@@ -31,7 +31,6 @@ class Donation {
   final int donorPhone;
   bool needsCar = false;
 
-  //Donation(this.location, this.time, [this.category = Category.Money, this.amount, this.isAssigned = false]);
   Donation.named({
     required this.title,
     required this.location,
@@ -91,11 +90,11 @@ class Donation {
 
 }
 
-// A new class that sums up all the expenses in one category to display them in the chart
+// A new class that sums up all the donations in one category to display them in the chart
 class DonationBucket {
   const DonationBucket({required this.category, required this.donations});
 
-  // add an extra named constructor to filter out expenses that belong to a specific category
+  // add an extra named constructor to filter out donations that belong to a specific category
   DonationBucket.forCategory(List<Donation> allDonations, this.category)
       : donations = allDonations
             .where((donation) => donation.category == category)
@@ -107,9 +106,6 @@ class DonationBucket {
   int get numberOfDonations {
     int num = 0;
     for (Donation d in donations) {
-      // if(d.amount != null ) {
-      //   sum += d.amount!;
-      // }
       num +=1;
     }
     return num;

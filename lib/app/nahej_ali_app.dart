@@ -234,20 +234,14 @@ class _NahejAliAppState extends State<NahejAliApp>{
     updateDonation(donation: donation, isCollected: true, isAssigned: true, volunteerAssigned: collectorVolunteer);
   }
 
-  // void _itNeedsCar(Donation donation, bool value) async {
-  //   setState(() {
-  //     donation.needsCar = value;// ?? false;
-  //   });
-  // }
-
-
+  
 
 
   void _openAddDonationOverlay() {
     showModalBottomSheet(
       isScrollControlled: true,
       context: context,
-      builder: (ctx) => NewDonation(_addNewDonation, /*itNeedsCar: _itNeedsCar,*/),
+      builder: (ctx) => NewDonation(_addNewDonation,),
     );
   }
 
@@ -269,14 +263,14 @@ class _NahejAliAppState extends State<NahejAliApp>{
     });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text("Expense Deleted"),
+        content: Text("Donation Deleted"),
         duration: Duration(seconds: 3),
         action: SnackBarAction(
           label: 'Undo',
           onPressed: () {
             setState(() {
               widget.registeredDonationsList.insert(index, donation);
-              // insret the donation again if the user revert the action
+              // insret the donation again in the databse if the user revert the action
               insertDonation(donation);
             });
           },
@@ -299,10 +293,9 @@ class _NahejAliAppState extends State<NahejAliApp>{
 
   void _addNewVolunteer(Volunteer volunteer) async {
     setState(() {
-      // now, when you want to use registeredDonationList in the State class, you use the widget varaible
       widget.registeredVolunteersList.add(volunteer);
     });
-    // insert the new donation to the database
+    // insert the new volunteer to the database
     insertVolunteer(volunteer);
   }
 
@@ -323,7 +316,7 @@ class _NahejAliAppState extends State<NahejAliApp>{
             onPressed: () {
               setState(() {
                 widget.registeredVolunteersList.insert(index, volunteer);
-                // insret the volunteer again if the user revert the action
+                // insret the volunteer again in the database if the user revert the action
                 insertVolunteer(volunteer);
               });
             },
@@ -365,15 +358,7 @@ class _NahejAliAppState extends State<NahejAliApp>{
     Widget activeDrawer = Text("");//SizedBox(height: 0, width: 0,);
     Widget activeBottomNavigationBar = Text("");//SizedBox(height: 0, width: 0,);
     var activeAppBar = AppBar(
-        //  foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-        //  backgroundColor: const Color.fromARGB(255, 27, 136, 134),
          title: Text("Nahej Ali", style: TextStyle(fontWeight: FontWeight.bold),),
-         /*actions: [
-           IconButton(
-             onPressed: () {},
-             icon: Icon(Icons.add),
-           ),
-         ],*/
        );
 
 
@@ -396,8 +381,6 @@ class _NahejAliAppState extends State<NahejAliApp>{
       activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Volunteers', openDonationDetails: _openDonationDetails, openVolunteerDetails: _openVolunteerDetails,);
       //activeScreen = AdminTabsScreen(registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, changeScreen: changeScreen, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, openAddVolunteerOverlay: _openAddDonationOverlay, deleteVolunteer: _deleteVolunteer, deleteDonation: _deleteDonation, selecteAdmindIndex: _selecteAdmindIndex, );
       activeAppBar = AppBar(
-        // foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-        // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
         title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
         actions: [
           IconButton(
@@ -415,9 +398,6 @@ class _NahejAliAppState extends State<NahejAliApp>{
       );
       activeBottomNavigationBar = BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        // selectedItemColor: const Color.fromARGB(255, 208, 183, 134),
-        // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
-        // unselectedItemColor: const Color.fromARGB(255, 213, 213, 213),
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.groups),
@@ -443,43 +423,19 @@ class _NahejAliAppState extends State<NahejAliApp>{
       if (_selecteAdmindIndex == 1) {
         activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: filteredDonations, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Donations', openDonationDetails: _openDonationDetails, openVolunteerDetails: _openVolunteerDetails,);
         activeAppBar = AppBar(
-          // foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-          // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
           title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
-          actions: [
-            // IconButton(
-            //   onPressed: _openAddVolunteerOverlay,
-            //   icon: Icon(Icons.add),
-            // ),
-          ],
         );
       }
       if (_selecteAdmindIndex == 2) {
         activeScreen = AdminScreen(changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: filteredDonations, registeredVolunteersList: widget.registeredVolunteersList, deleteDonation: _deleteDonation, deleteVolunteer: _deleteVolunteer, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Collected', openDonationDetails: _openDonationDetails, openVolunteerDetails: _openVolunteerDetails,);
           activeAppBar = AppBar(
-          // foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-          // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
           title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
-          // actions: [
-          //   IconButton(
-          //     onPressed: _openAddVolunteerOverlay,
-          //     icon: Icon(Icons.add),
-          //   ),
-          // ],
         );
       }
       if (_selecteAdmindIndex == 3) {
         activeScreen = ChartScreen(donationsList: widget.registeredDonationsList,);
         activeAppBar = AppBar(
-          // foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-          // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
           title: Text("Nahej Ali - Admin", style: TextStyle(fontWeight: FontWeight.bold),),
-          // actions: [
-          //   IconButton(
-          //     onPressed: _openAddVolunteerOverlay,
-          //     icon: Icon(Icons.add),
-          //   ),
-          // ],
         );
       }
     }
@@ -487,15 +443,7 @@ class _NahejAliAppState extends State<NahejAliApp>{
     else if (activeScreenName == 'volunteer-login') {
       activeScreen = VolunteerLogin(changeScreen, registeredVolunteersList: widget.registeredVolunteersList, registeredDonationsList: widget.registeredDonationsList, openAssignTo: _openAssignToOverlay, reserve: _assignTo, isCollected: _isCollected, openAddVolunteerOverlay: _openAddVolunteerOverlay, deleteVolunteer: _deleteVolunteer, openVolunteerDetails: _openVolunteerDetails,);
       activeAppBar = AppBar(
-        // foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-        // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
         title: Text("Nahej Ali - Volunteer Login", style: TextStyle(fontWeight: FontWeight.bold),),
-        actions: [
-          // IconButton(
-          //   onPressed: _openAddVolunteerOverlay,
-          //   icon: Icon(Icons.add),
-          // ),
-        ],
       );
       activeDrawer = MainDrawer(
         onFiltersTap: _openFiltersScreen, 
@@ -509,14 +457,8 @@ class _NahejAliAppState extends State<NahejAliApp>{
     else if (activeScreenName == 'volunteer-screen') {
       activeScreen = VolunteerScreen(volunteerLogged: loggedVolunteer, changeScreen: changeScreen, openAddVolunteerOverlay: _openAddVolunteerOverlay, registeredDonationsList: widget.registeredDonationsList, registeredVolunteersList: widget.registeredVolunteersList, deleteVolunteer: deleteVolunteer, openAssignTo: _openAddVolunteerOverlay, reserve: _assignTo, isCollected: _isCollected, activePart: 'Tasks', openDonationDetails: _openDonationDetails, openVolunteerDetails: _openVolunteerDetails,);
       activeAppBar = AppBar(
-        // foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-        // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
         title: Text("Nahej Ali - Volunteer", style: TextStyle(fontWeight: FontWeight.bold),),
         actions: [
-          // IconButton(
-          //   onPressed: _openAddVolunteerOverlay,
-          //   icon: Icon(Icons.add),
-          // ),
         ],
       );
       activeDrawer = MainDrawer(
@@ -527,10 +469,6 @@ class _NahejAliAppState extends State<NahejAliApp>{
         activePart: '',
       );
       activeBottomNavigationBar = BottomNavigationBar(
-        // fixedColor: const Color.fromARGB(255, 208, 183, 134),
-        // backgroundColor: const Color.fromARGB(255, 27, 136, 134),
-        //selectedItemColor: Colors.red,
-        // unselectedItemColor: const Color.fromARGB(255, 224, 224, 224),
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
@@ -567,8 +505,6 @@ class _NahejAliAppState extends State<NahejAliApp>{
         activePart: '',
       );
       activeAppBar = AppBar(
-        // backgroundColor: const Color.fromARGB(255, 208, 183, 134),
-        // foregroundColor: const Color.fromARGB(255, 27, 136, 134),
         title: Text("Donate Now", style: TextStyle(fontWeight: FontWeight.bold),),
         actions: [
           IconButton(
@@ -580,24 +516,11 @@ class _NahejAliAppState extends State<NahejAliApp>{
     }
 
     return 
-     Scaffold(
-      appBar: activeAppBar,
-    //AppBar(
-    //   //   foregroundColor: const Color.fromARGB(255, 208, 183, 134),
-    //   //   backgroundColor: const Color.fromARGB(255, 27, 136, 134),
-    //   //   title: Text("Nahej Ali", style: TextStyle(fontWeight: FontWeight.bold),),
-    //   //   /*actions: [
-    //   //     IconButton(
-    //   //       onPressed: () {},
-    //   //       icon: Icon(Icons.add),
-    //   //     ),
-    //   //   ],*/
-    //   // ),   
-       body: activeScreen,
-      //  backgroundColor: Colors.white,
-       drawer: activeDrawer,
-       bottomNavigationBar: activeBottomNavigationBar,
-     );
-    
+      Scaffold(
+        appBar: activeAppBar,
+        body: activeScreen,
+        drawer: activeDrawer,
+        bottomNavigationBar: activeBottomNavigationBar,
+      );
   }
 }

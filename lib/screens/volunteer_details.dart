@@ -81,7 +81,7 @@ class _VolunteerDetailsState extends State<VolunteerDetails> {
           onTap: _selectDetailsPart,
           currentIndex: _selectedDetailsIndex,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.details), label: 'Details'),
+            BottomNavigationBarItem(icon: Icon(Icons.account_circle), label: 'Details'),
             BottomNavigationBarItem(icon: Icon(Icons.assignment), label: 'Assigned'), 
             BottomNavigationBarItem(icon: Icon(Icons.done), label: 'Completed')
           ]

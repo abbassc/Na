@@ -46,7 +46,7 @@ class _ThemesAdminScreenState extends State<ThemesAdminScreen> {
                 value: _selectedTheme,
                 items: [
                   DropdownMenuItem(value: AppThemeChoice.original, child: Text('Original Theme')),
-                  DropdownMenuItem(value: AppThemeChoice.palestine, child: Text('Palestie Theme')),
+                  DropdownMenuItem(value: AppThemeChoice.palestine, child: Text('Palestine Theme')),
                   DropdownMenuItem(value: AppThemeChoice.ramadan, child: Text('Ramadan Theme')),
                   DropdownMenuItem(value: AppThemeChoice.ashura, child: Text('Ashura Theme')),
                   DropdownMenuItem(value: AppThemeChoice.eid, child: Text('Eid Theme')),

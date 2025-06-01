@@ -126,7 +126,7 @@ class AdminScreen extends StatelessWidget{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 300,
+                        width: 296,
                         height: 481,
                         child: 
                       //Expanded(child: 
@@ -175,7 +175,7 @@ class AdminScreen extends StatelessWidget{
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        width: 300,
+                        width: 296,
                         height: 489,
                         child: 
                       

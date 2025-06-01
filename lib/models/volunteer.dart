@@ -8,7 +8,6 @@ class Volunteer {
   final String location;
   final String availability;
 
-  //const Volunteer (this.name, this.location, this.availability);
   Volunteer.named( {required this.phone, required this.name, required this.location, required this.availability, id}) : id = id ?? Uuid().v4();
 
   // Create a getter to create a map for every volunteer object.
